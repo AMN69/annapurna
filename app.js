@@ -9,7 +9,7 @@ var logger = require('morgan');
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://localhost/basic-auth", {
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -24,6 +24,9 @@ mongoose
 
 var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
+var groupRouter = require('./routes/group');
+var meetupRouter = require('./routes/meetup');
+//var peopleRouter = require('./routes/people');
 
 var app = express();
 
@@ -39,6 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', authRouter);
 app.use('/', indexRouter);
+app.use('/', groupRouter);
+app.use('/', meetupRouter);
+//app.use('/', peopleRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

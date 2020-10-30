@@ -7,11 +7,7 @@ const jwt = require("jsonwebtoken");
 // requerimos el middleware
 const withAuth = require("../helpers/middleware");
 
-<<<<<<< HEAD
-// People model
-=======
 // User model
->>>>>>> andreu
 const People = require("../models/people");
 
 // BCrypt to encrypt passwords
@@ -20,12 +16,13 @@ const { findOne } = require("../models/people");
 const bcryptSalt = 10;
 
 router.get("/signup", (req, res, next) => {
+
   res.render("auth/signup");
 });
 
 router.post("/signup", async (req, res, next) => {
   // desestructuramos el email y el password de req.body
-  const { email, password } = req.body;
+  const { email, password, name, surname, age, hobbies, isAdmin } = req.body;
 
   if (req.email === "" || password === "") {
     res.render("auth/signup", {
@@ -48,11 +45,26 @@ router.post("/signup", async (req, res, next) => {
       });
       return;
     }
+    var pepito = false;
+    if (admin="isAdmin"){
+      pepito = true;
+      } else {
+      pepito = false;
+      }
+
+    
 
     // creamos el usuario y luego redirigimos a '/'
     await People.create({
+      
       email,
       password: hashPass,
+      name,
+      surname,
+      age,
+      hobbies,
+      isAdmin: pepito
+
     });
     res.render("home", { message: "User created" });
   } catch (error) {
