@@ -8,6 +8,8 @@ var logger = require('morgan');
 
 const mongoose = require("mongoose");
 
+// We replace the Bd name by the name within the MONGODB_URI var that is in .env file
+// this is to avoid showing the Db route. 
 mongoose
   .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
