@@ -8,11 +8,11 @@ const jwt = require("jsonwebtoken");
 const withAuth = require("../helpers/middleware");
 
 // User model
-const User = require("../models/user");
+const People = require("../models/people");
 
 // BCrypt to encrypt passwords
 const bcrypt = require("bcryptjs");
-const { findOne } = require("../models/user");
+const { findOne } = require("../models/people");
 const bcryptSalt = 10;
 
 router.get("/signup", (req, res, next) => {

@@ -1,14 +1,44 @@
-<form id="form" action="/signup" method="POST">
+{{!-- 1 People --> "N" Groups
+                    1  Group --> "N" Meetups
+      1 People --> "N" Meetups  --}}
+
+{{!-- We keep the token with all info except password (_id is a must) --}}
+{{!-- Table = people --}}
+
 <h2>Sign Up</h2>
+
+<form id="form" action="/signup" method="POST">  
   <label for="email">Email</label>
   <br />
-
   <input type="email" name="email" placeholder="Your email" />
 
   <label for="password">Password</label>
   <br />
-
   <input type="password" name="password" placeholder="********" />
+
+  <label for="name">Name</label>
+  <br />
+  <input type="text" name="name" />
+
+  <label for="surname">Surname</label>
+  <br />
+  <input type="text" name="surname" />
+
+  <label for="age">Age</label>
+  <br />
+  <input type="number" name="age" />
+
+  <label for="hobbies">Hobbies</label>
+  <br />
+  <input type="text" name="hobbies" />
+
+  <label for="admin">Admin?</label>
+  <br />
+  <input type="checkbox" name="admin" value="isAdmin"/>
+
+  {{#if errorMessage }}
+    <div class="error-message">{{ errorMessage }}</div>
+  {{/if}}
 
   <button type="submit">Create account</button>
 </form>

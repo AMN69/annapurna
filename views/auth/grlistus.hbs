@@ -1,0 +1,48 @@
+{{!-- isAdmin = false --}}
+
+{{!-- 1 People --> "N" Groups
+                    1  Group --> "N" Meetups
+      1 People --> "N" Meetups  --}}
+
+{{!-- We have all Groups for an _id.People in the token, we list first 
+idGroups[].Group === _id.People and later other Groups --}}
+{{!-- Table = group --}}
+
+<h1>GROUP EXCURSIONS (user)</h1>
+
+<nav> <<<<<<<<--------    NAV BAR   -------->>>>>></nav>
+<img="" alt="app logo">
+
+<h2>List of groups:</h2>
+
+{{#each groups}}
+    <div class="group_list_user">
+        <p>{{this.name}}</p>
+        <form action="/melistus/{{this._id}}" method="GET">
+            <button type="submit">MEET UPs</button>
+        </form>
+        {{!-- The ADD means (if enabled / REMOVE disabled) --> 
+            a) In the group table to add _id.People to idPeople[].Group
+            b) In the people table to add _id.Group to idGroup[].People 
+            c) render this page (grlistus) with new situation
+            
+            The REMOVE means (if enabled / ADD disabled) -->
+            a) In the group table to remove _id.People from idPeople[].Group
+            b) In the people table to remove _id.Group from idGroup[].People --}}
+        <form action="/grlistus/add/" method="GET">
+            <button type="submit">ADD +</button>
+        </form>
+        <form action="/grlistus/remove/" method="GET">
+            <button type="submit">REMOVE -</button>
+        </form>        
+    </div>
+{{/each}}
+
+<div>
+    <form action="/grlistus/previous/" method="GET">
+            <button type="submit">Previous</button>
+        </form>
+        <form action="/grlistus/next/" method="GET">
+            <button type="submit">Next</button>
+        </form>
+</div>

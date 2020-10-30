@@ -1,0 +1,41 @@
+{{!-- isAdmin = true --}}
+
+{{!-- 1 People --> "N" Groups
+                    1  Group --> "N" Meetups
+      1 People --> "N" Meetups  --}}
+
+{{!-- We have all Groups for an _id.People in the token, we render Groups with 
+idAdmin.Group === _id.People --}}
+{{!-- Table = group --}}
+
+<h1>GROUP EXCURSIONS (admin)</h1>
+
+<nav> <<<<<<<<--------    NAV BAR   -------->>>>>></nav>
+<img="" alt="app logo">
+
+<h2>List of groups:</h2>
+
+{{#each groups}}
+    <div class="group_list_admin">
+        <p>{{this.name}}</p>
+        <form action="/melistadm/{{this._id}}" method="GET">
+            <button type="submit">MEET UPs</button>
+        </form>
+        <form action="/grdetadm/{{this.id}}" method="GET">
+            <button type="submit">EDIT</button>
+        </form>   
+    </div>
+{{/each}}
+
+<form action="/grdetadm" method="GET">
+            <button type="submit">CREATE</button>
+</form>     
+
+<div>
+    <form action="/grlistadm/previous/" method="GET">
+            <button type="submit">Previous</button>
+        </form>
+        <form action="/grlistadm/next/" method="GET">
+            <button type="submit">Next</button>
+        </form>
+</div>
