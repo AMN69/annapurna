@@ -1,0 +1,55 @@
+{{!-- isAdmin = false --}}
+
+{{!-- 1 People --> "N" Groups
+                    1  Group --> "N" Meetups
+      1 People --> "N" Meetups  --}}
+
+{{!-- We come from grlistus.hbs. We have all Meetups for an _id.People in the token, 
+we list first idMeetups and later other Meetups --}}
+{{!-- Table = meetup --}}
+
+<h1>EXCURSIONS</h1>
+
+<nav> <<<<<<<<--------    NAV BAR   -------->>>>>></nav>
+<img="" alt="app logo">
+
+{{!-- In JS class we have to take the idGroup and read the Group name 
+passing it here. So replace this.idPeople for Group name --}}
+<h2>List of excursions (for group {{Group name}}):</h2>
+
+{{#each meetups}}
+    <div class="meetup_list_user">
+        <p>{{this.name}}</p>
+        <form action="/medetus/{{this._id}}" method="GET">
+            <button type="submit">DETAILS</button>
+        </form>
+        {{!-- The ADD means (if enabled / REMOVE disabled) --> 
+            a) In the meetup table to add _id.People to idPeople[].Meetup
+            b) In the people table to add _id.Meetup to idMeetup[].People 
+            c) render this page (melistus) with new situation
+            
+            The REMOVE means (if enabled / ADD disabled) -->
+            a) In the meetup table to remove _id.People from idPeople[].Meetup
+            b) In the people table to remove _id.Meetup from idMeetup[].People --}}
+        <form action="/melistus/add/" method="GET">
+            <button type="submit">ADD +</button>
+        </form>
+        <form action="/melistus/remove/" method="GET">
+            <button type="submit">REMOVE -</button>
+        </form>        
+    </div>
+{{/each}}
+
+<div>
+    <form action="/melistus/previous/" method="GET">
+            <button type="submit">Previous</button>
+        </form>
+        <form action="/melistus/next/" method="GET">
+            <button type="submit">Next</button>
+        </form>
+</div>
+
+{{!-- to read an array we need to add .0 or .0. not sure which one --}}
+<form action="/grlistus/{{this.idPersona.0.}}" method="GET">
+     <button type="submit">BACK TO GROUPS</button>
+</form>  

@@ -1,0 +1,35 @@
+{{!-- isAdmin = true --}}
+
+{{!-- 1 People --> "N" Groups
+                    1  Group --> "N" Meetups
+      1 People --> "N" Meetups  --}}
+
+{{!-- We come from grlistadm.hbs with _id.Group so we can render all the info --}}
+{{!-- Table = group --}}
+
+<h1>GROUP DETAILS</h1>
+
+<nav> <<<<<<<<--------    NAV BAR   -------->>>>>></nav>
+<img="" alt="app logo">
+
+<h2>DETAILS</h2>
+
+<div>
+    <p>Admin name: {{group.adminName}}</p>
+    <p>Admin surname: {{group.adminSurname}}</p>
+    <p>Group name: {{group.groupName}}</p>
+    <p>Group description: {{group.groupDescription}}</p>
+</div>
+
+{{!-- Show message "Group updated" / "Group created" --}}
+<form action="/grdetadm" method="GET">
+    <button type="submit">CREATE/MODIFY</button>
+</form>  
+
+<form action="/grlistadm" method="POST">
+    <button type="submit">BACK TO GROUPs</button>
+</form>    
+
+<form action="/grlistadm" method="POST">
+    <button type="submit">BACK TO MEET UPs</button>
+</form>

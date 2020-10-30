@@ -7,7 +7,11 @@ const jwt = require("jsonwebtoken");
 // requerimos el middleware
 const withAuth = require("../helpers/middleware");
 
+<<<<<<< HEAD
 // People model
+=======
+// User model
+>>>>>>> andreu
 const People = require("../models/people");
 
 // BCrypt to encrypt passwords
