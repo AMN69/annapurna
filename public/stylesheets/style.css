@@ -72,7 +72,7 @@ a {
 }
 
 nav {
-  background: #262626;
+  /* background: #262626; */
   padding: 25px 0;
 }
 
@@ -82,7 +82,8 @@ nav .wrapper{
 
 nav .wrapper a{
   text-transform: uppercase;
-  color: #fff;
+  /* color: #fff; */
+  color: #262626;
   text-decoration: none;
   padding: 0 10px;
   opacity: 0.8;
@@ -94,4 +95,64 @@ nav .wrapper a:hover{
 
 .container{
   margin: 50px;
+}
+
+.nav-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wrapper {
+  display: flex;
+  width: 50%;
+}
+
+.wrapper > a {
+  display: flex;
+  justify-content: right;
+  width: 33%;
+  font-size: 1.5rem;
+}
+
+.h1-class {
+  display: flex;
+  font-size: 2rem;
+  justify-content: space-around;
+}
+
+/* For PC/Tablet horizontal nav-bar active and dropdown not active. */
+.dropdown {
+  display: none;
+}
+
+@media (max-width: 375px) { /* For mobile 375px */
+
+  .wrapper > a {
+    width: 20%;
+    display: none;
+  }
+
+  .btn {
+    color: black;
+    background-color: #cdc9c3;
+    font-size: 1.5rem;
+  }
+  
+  .dropdown {
+    display: block;
+    /* padding-right: 10%; */
+  }
+
+  .dropdown-menu, .dropdown-item {
+      background-color: #cdc9c3;
+      font-size: 1.2rem;
+  }
+
+  .logo {
+    height: 40%;
+    width: 40%;
+    /* margin-right: 55%; */
+  }
+
 }
