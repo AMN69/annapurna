@@ -28,6 +28,7 @@ var indexRouter = require('./routes/index');
 var authRouter = require('./routes/auth');
 var groupRouter = require('./routes/group');
 var meetupRouter = require('./routes/meetup');
+
 //var peopleRouter = require('./routes/people');
 
 var app = express();

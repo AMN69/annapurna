@@ -8,26 +8,28 @@
 _id.Group === idGroup.Meetup (unique, not array). --}}
 {{!-- Table = meetup --}}
 
-<h1>EXCURSIONS</h1>
 
 <nav> <<<<<<<<--------    NAV BAR   -------->>>>>></nav>
 <img="" alt="app logo">
 
 {{!-- In JS class we have to take the idGroup and read the Group name
 passing it here. So replace this.idPeople for Group name --}}
-<h2>List of excursions (for group {{Group name}}):</h2>
+<h2>Meet ups (for admin {{Meetup name}}):</h2>
 
-{{#each meetups}}
+{{#each Meetups}}
     <div class="meetup_list_admin">
         <p>{{this.name}}</p>
-        <form action="/medetus/{{this._id}}" method="GET">
+        <form action="/mecreadm/{{this._id}}" method="GET">
             <button type="submit">EDIT</button>
         </form>
     </div>
 {{/each}}
+<form action="/mecreadm" method="GET">
+            <button type="submit">CREATE</button>
+</form>    
 
 <div>
-    <form action="/melistadm/previous/" method="GET">
+    <form action="/mecreadm" method="GET">
             <button type="submit">Previous</button>
         </form>
         <form action="/melistadm/next/" method="GET">
@@ -39,6 +41,6 @@ passing it here. So replace this.idPeople for Group name --}}
             <button type="submit">CREATE</button>
 </form>     
 
-<form action="/grlistadm/{{this.idGroup}}" method="GET">
+<form action="/melistadm/{{this.id}}" method="GET">
      <button type="submit">BACK TO GROUPS</button>
 </form>  

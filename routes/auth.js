@@ -22,8 +22,8 @@ router.get("/signup", (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   // desestructuramos el email y el password de req.body
-  const { email, password, name, surname, age, hobbies, isAdmin } = req.body;
-
+  const { email, password, name, surname, age, hobbies, admin } = req.body;
+  
   if (req.email === "" || password === "") {
     res.render("auth/signup", {
       errorMessage: "Indicate a username and a password to sign up",
@@ -45,11 +45,13 @@ router.post("/signup", async (req, res, next) => {
       });
       return;
     }
-    var pepito = false;
-    if (admin="isAdmin"){
-      pepito = true;
+    var isItAdm = false;
+    if (admin === "on"){
+      console.log("admin on")
+      isItAdm = true;
       } else {
-      pepito = false;
+      console.log("admin not on")
+      isItAdm = false;
       }
 
     
@@ -63,7 +65,7 @@ router.post("/signup", async (req, res, next) => {
       surname,
       age,
       hobbies,
-      isAdmin: pepito
+      isAdmin: isItAdm
 
     });
     res.render("home", { message: "User created" });
@@ -105,9 +107,17 @@ router.post("/login", async (req, res, next) => {
       const token = jwt.sign(payload, process.env.SECRET_SESSION, {
         expiresIn: "1h"
       });
-      // enviamos en la respuesta una cookie con el token y luego redirigimos a la home
+      // enviamos en la respuesta una cookie con el token y luego redirigimos:
+      // a) si es Admin a la página de lista de grupos administrados por el Admin.
+      // b) si es User a la página de lista de grupos administrados por el user.
       res.cookie("token", token, { httpOnly: true });
-      res.status(200).redirect("/");
+      if (peopleWithoutPass.isAdmin) {
+        console.log("We go to grlistadm");
+        res.status(200).redirect("/grlistadm");
+      } else {
+        console.log("We go to grlistus");
+        res.status(200).redirect("/grlistus");
+      }
     } else {
       // en caso contrario, renderizamos la vista de auth/login con un mensaje de error
       res.render("auth/login", {

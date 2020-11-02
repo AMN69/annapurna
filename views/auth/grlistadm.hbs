@@ -15,10 +15,10 @@ idAdmin.Group === _id.People --}}
 
 <h2>List of groups:</h2>
 
-{{#each groups}}
+{{#each Groups}}
     <div class="group_list_admin">
         <p>{{this.name}}</p>
-        <form action="/melistadm/{{this._id}}" method="GET">
+        <form action="/grlistadm/{{this._id}}" method="GET">
             <button type="submit">MEET UPs</button>
         </form>
         <form action="/grdetadm/{{this.id}}" method="GET">
@@ -27,7 +27,7 @@ idAdmin.Group === _id.People --}}
     </div>
 {{/each}}
 
-<form action="/grdetadm" method="GET">
+<form action="/grcreadm" method="GET">
             <button type="submit">CREATE</button>
 </form>     
 

@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({
-  idAdmin: { type: Schema.ObjectId, ref: 'People' },
+  idAdmin: String,
   adminName: String,
   adminSurname: String,
   idPeople: [{ type: Schema.ObjectId, ref: 'People' }],
