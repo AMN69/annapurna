@@ -9,8 +9,8 @@ const peopleSchema = new Schema({
   age: Number,
   hobbies: String,
   isAdmin: {type: Boolean, default: false },
-  idGroup: [{ type: Schema.ObjectId, ref: 'Group' }],
-  idMeetup: [{ type: Schema.ObjectId, ref: 'Meetup'}]
+  idGroup: [{ type: Schema.Types.ObjectId, ref: 'Group' }],
+  idMeetup: [{ type: Schema.Types.ObjectId, ref: 'Meetup'}]
 });
 
 peopleSchema.set('timestamps', true);

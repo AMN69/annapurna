@@ -78,13 +78,15 @@ router.get("/medetadm:id", async (req, res, next) => {
 
 
 // GET Meetup list /melistus
-router.get("/melistus:id", async (req, res, next) => {
+router.get("/melistus/:id", async (req, res, next) => {
   const idGroup = req.params.id;
   try {
-    let meetupList = await Meetup.find([{idGroup: idGroup}]);
-    res.render("auth/melistus", meetupList);
+
+    let meetupList = await Meetup.find({idGroup: idGroup});
+    console.log("Meetup Populate: ", meetupList);
+    res.render("auth/melistus", {meetupList});
   } catch (error) {
-    next(err);
+    next(error);
     return;
   }
 });
