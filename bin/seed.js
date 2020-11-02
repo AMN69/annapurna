@@ -31,7 +31,6 @@ const groups = [
     groupName: "The Group 3 name",
     groupDescription: "The Group 3 descrition"
   }
-
 ];
 
 Group.create(groups, (err, savedGroups) => {
