@@ -5,8 +5,8 @@ const groupSchema = new Schema({
   idAdmin: String,
   adminName: String,
   adminSurname: String,
-  idPeople: [{ type: Schema.ObjectId, ref: 'People' }],
-  idMeetup: [{ type: Schema.ObjectId, ref: 'Meetup'}],
+  idPeople: [{ type: Schema.Types.ObjectId, ref: 'People' }],
+  idMeetup: [{ type: Schema.Types.ObjectId, ref: 'Meetup'}],
   groupName: String,
   groupDescription: String
 });

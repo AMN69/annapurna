@@ -11,8 +11,8 @@ const meetupSchema = new Schema({
   address: String,
   addressnum: Number,
   mapPoint: Array,
-  idPeople: [{ type: Schema.ObjectId, ref: 'People' }],
-  idGroup: { type: Schema.ObjectId, ref: 'Group' }
+  idPeople: [{ type: Schema.Types.ObjectId, ref: 'People' }],
+  idGroup: { type: Schema.Types.ObjectId, ref: 'Group' }
 });
 
 meetupSchema.set('timestamps', true);
