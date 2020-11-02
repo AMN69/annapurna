@@ -15,7 +15,8 @@ a {
 
 #form {
   margin: 50px auto;
-  width: 380px;
+  /* width: 380px; */
+  width: 80%;
 }
 
 #form h2 {
@@ -72,7 +73,7 @@ a {
 }
 
 nav {
-  background: #262626;
+  /* background: #262626; */
   padding: 25px 0;
 }
 
@@ -82,7 +83,8 @@ nav .wrapper{
 
 nav .wrapper a{
   text-transform: uppercase;
-  color: #fff;
+  /* color: #fff; */
+  color: #262626;
   text-decoration: none;
   padding: 0 10px;
   opacity: 0.8;
@@ -93,5 +95,111 @@ nav .wrapper a:hover{
 }
 
 .container{
-  margin: 50px;
+  /* margin: 50px; */
+  width: 90%;
+}
+
+.nav-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.wrapper {
+  display: flex;
+  width: 50%;
+}
+
+.wrapper > a {
+  display: flex;
+  justify-content: right;
+  width: 33%;
+  font-size: 1.5rem;
+}
+
+.h1-class, .form-create, .button-create {
+  display: flex;
+  font-size: 2rem;
+  justify-content: space-around;
+  margin-bottom: 10%;
+}
+
+.form-create {
+  margin: 10% 2%;
+  display: flex;
+  vertical-align: middle;
+}
+
+.button-create {
+  margin: 10%;
+  padding: 2%;
+  font-size: 2rem;
+  display: flex;
+}
+
+
+/* For PC/Tablet horizontal nav-bar active and dropdown not active. */
+.dropdown {
+  display: none;
+}
+
+@media (max-width: 375px) { /* For mobile 375px */
+
+  body {
+    padding: 5%;
+    /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+  }
+  
+  .wrapper > a {
+    width: 20%;
+    display: none;
+  }
+
+  .btn {
+    color: black;
+    background-color: #cdc9c3;
+    font-size: 1.2rem;
+  }
+  
+  .dropdown {
+    display: block;
+    /* padding-right: 10%; */
+  }
+
+  .div-dropdown {
+    margin-top: 5%;
+  }
+
+  .dropdown-menu, .dropdown-item {
+      background-color: #cdc9c3;
+      font-size: 1.2rem;
+  }
+
+  .logo {
+    height: 40%;
+    width: 40%;
+    /* margin-right: 55%; */
+  }
+
+  .h1-class, .form-create, .button-create {
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-around;
+  }  
+
+  .form-create {
+    margin: 10% 2%;
+    display: flex;
+    vertical-align: middle;
+  }
+
+  .button-create {
+    margin: 10%;
+    padding: 2%;
+    font-size: 1.2rem;
+    display: flex;
+  }
+
+  
+
 }

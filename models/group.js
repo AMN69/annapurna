@@ -2,11 +2,11 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const groupSchema = new Schema({
-  idAdmin: { type: Schema.ObjectId, ref: 'People' },
+  idAdmin: { type: Schema.Types.ObjectId, ref: 'People' },
   adminName: String,
   adminSurname: String,
-  idPeople: [{ type: Schema.ObjectId, ref: 'People' }],
-  idMeetup: [{ type: Schema.ObjectId, ref: 'Meetup'}],
+  idPeople: [{ type: Schema.Types.ObjectId, ref: 'People' }],
+  idMeetup: [{ type: Schema.Types.ObjectId, ref: 'Meetup' }],
   groupName: String,
   groupDescription: String
 });
