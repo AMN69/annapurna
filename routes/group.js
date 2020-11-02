@@ -91,9 +91,9 @@ router.get("/grlistus", withAuth, async (req, res, next) => {
   if (req.user) {
     // const user = req.user;
       try {
-        const groupList = await Group.find();
+        const groupListUser = await Group.find();
         // To take all groupList and show first the user ones (Group.idPeople[] = user)
-        res.render("auth/grlistus", groupList);
+        res.render("auth/grlistus", groupListUser);
       } catch (error) {
         next(err);
         return;
@@ -102,7 +102,7 @@ router.get("/grlistus", withAuth, async (req, res, next) => {
     res.redirect("/");
   }      
 });
-  
+
 // POST Update Group list /grlistus NO ME QUEDA CLARO COMO HACERLO. TENGO COPIADO EL DE ADMIN
   
 router.post('/grlistus', function(req, res, next) {
