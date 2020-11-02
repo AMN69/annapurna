@@ -4,7 +4,12 @@ const meetupSchema = new Schema({
   name: String,
   description: String,
   date: Date,
-  time: Number,
+  time: String,
+  country: String,
+  city: String,
+  zipcode: Number,
+  address: String,
+  addressnum: Number,
   mapPoint: Array,
   idPeople: [{ type: Schema.ObjectId, ref: 'People' }],
   idGroup: { type: Schema.ObjectId, ref: 'Group' }

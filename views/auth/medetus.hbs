@@ -16,7 +16,13 @@
     <p>Description: {{meetup.description}}</p>
     <p>Date: {{meetup.date}}</p>
     <p>Time: {{meetup.time}}</p>
-    <img="" alt="point of meetup image">
+    <p>Meeting point:</p>
+    <p>Country: {{meetup.country}}</p>
+    <p>City: {{meetup.city}}</p>
+    <p>Zip code: {{meetup.zipcode}}</p>
+    <p>Address: {{meetup.address}}</p>
+    <p>Number: {{meetup.addressnum}}</p>
+    <img href="{{api}}" alt="point of meetup image">
 </div>
 
 <form action="/melistus" method="POST">

@@ -25,12 +25,13 @@ router.get("/medetus:id", async (req, res, next) => {
   const idMeetup = req.params.id;
   try {
     let meetupDet = await Meetup.find([{_id: idMeetup}]);
-    res.render("auth/medetus", meetupDet);
+    const api = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=" + process.env.API_KEY + "&co=" + meetupDet.country + "&ci=" + meetupDet.city + "&zi=" + meetupDet.zipcode + "&s=" + meetupDet.address + "&n=" + meetupDet.addressnum + "&z=17&h=320&f=1";
+    res.render("auth/medetus", {meetupDet, api});
   } catch (error) {
     
   }
 });
-  
+
 // POST Update Meetup list  /melistus
 // I think it's not necessary but think about it
   

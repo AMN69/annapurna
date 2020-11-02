@@ -107,6 +107,7 @@ router.post("/login", async (req, res, next) => {
       const token = jwt.sign(payload, process.env.SECRET_SESSION, {
         expiresIn: "1h"
       });
+      console.log("Payload: ", payload);
       // enviamos en la respuesta una cookie con el token y luego redirigimos:
       // a) si es Admin a la página de lista de grupos administrados por el Admin.
       // b) si es User a la página de lista de grupos administrados por el user.
