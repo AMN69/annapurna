@@ -10,9 +10,7 @@ idAdmin.Group === _id.People --}}
 
 <h1 class="h1-class">GROUP EXCURSIONS (admin)</h1>
 
-<h2>List of groups:</h2>
-
-{{#each Groups}}
+{{#each groups}}
     <div class="group_list_admin">
         <p>{{this.name}}</p>
         <form action="/grlistadm/{{this._id}}" method="GET">
@@ -24,15 +22,15 @@ idAdmin.Group === _id.People --}}
     </div>
 {{/each}}
 
-<form action="/grcreadm" method="GET">
-            <button type="submit">CREATE</button>
+<form class="form-create" action="/grdetadm" method="GET">
+            <button class="button-create" type="submit">Create new Group</button>
 </form>     
 
-<div>
+{{!-- <div>
     <form action="/grlistadm/previous/" method="GET">
             <button type="submit">Previous</button>
         </form>
         <form action="/grlistadm/next/" method="GET">
             <button type="submit">Next</button>
         </form>
-</div>
+</div> --}}

@@ -15,7 +15,8 @@ a {
 
 #form {
   margin: 50px auto;
-  width: 380px;
+  /* width: 380px; */
+  width: 80%;
 }
 
 #form h2 {
@@ -94,7 +95,8 @@ nav .wrapper a:hover{
 }
 
 .container{
-  margin: 50px;
+  /* margin: 50px; */
+  width: 90%;
 }
 
 .nav-div {
@@ -115,11 +117,26 @@ nav .wrapper a:hover{
   font-size: 1.5rem;
 }
 
-.h1-class {
+.h1-class, .form-create, .button-create {
   display: flex;
   font-size: 2rem;
   justify-content: space-around;
+  margin-bottom: 10%;
 }
+
+.form-create {
+  margin: 10% 2%;
+  display: flex;
+  vertical-align: middle;
+}
+
+.button-create {
+  margin: 10%;
+  padding: 2%;
+  font-size: 2rem;
+  display: flex;
+}
+
 
 /* For PC/Tablet horizontal nav-bar active and dropdown not active. */
 .dropdown {
@@ -128,6 +145,11 @@ nav .wrapper a:hover{
 
 @media (max-width: 375px) { /* For mobile 375px */
 
+  body {
+    padding: 5%;
+    /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
+  }
+  
   .wrapper > a {
     width: 20%;
     display: none;
@@ -136,12 +158,16 @@ nav .wrapper a:hover{
   .btn {
     color: black;
     background-color: #cdc9c3;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   
   .dropdown {
     display: block;
     /* padding-right: 10%; */
+  }
+
+  .div-dropdown {
+    margin-top: 5%;
   }
 
   .dropdown-menu, .dropdown-item {
@@ -154,5 +180,26 @@ nav .wrapper a:hover{
     width: 40%;
     /* margin-right: 55%; */
   }
+
+  .h1-class, .form-create, .button-create {
+    display: flex;
+    font-size: 1.2rem;
+    justify-content: space-around;
+  }  
+
+  .form-create {
+    margin: 10% 2%;
+    display: flex;
+    vertical-align: middle;
+  }
+
+  .button-create {
+    margin: 10%;
+    padding: 2%;
+    font-size: 1.2rem;
+    display: flex;
+  }
+
+  
 
 }
