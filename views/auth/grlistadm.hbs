@@ -10,10 +10,10 @@ idAdmin.Group === _id.People --}}
 
 <h1 class="h1-class">GROUP EXCURSIONS (admin)</h1>
 
-{{#each groups}}
+{{#each groupListAdmin}}
     <div class="group_list_admin">
-        <p>{{this.name}}</p>
-        <form action="/grlistadm/{{this._id}}" method="GET">
+        <p>{{this.groupName}}</p>
+        <form action="/melistadm/{{this._id}}" method="GET">
             <button type="submit">MEET UPs</button>
         </form>
         <form action="/grdetadm/{{this.id}}" method="GET">

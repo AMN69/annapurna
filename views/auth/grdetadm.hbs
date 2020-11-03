@@ -9,26 +9,19 @@
 
 <h1>GROUP DETAILS</h1>
 
-<h2>DETAILS</h2>
-
-<div>
-
-   
-    <p>Admin name: {{group.adminName}}</p>
-    <p>Admin surname: {{group.adminSurname}}</p>
-    <p>Group name: {{group.groupName}}</p>
-    <p>Group description: {{group.groupDescription}}</p>
-</div>
-
 {{!-- Show message "Group updated" / "Group created" --}}
-<form action="/grdetadm" method="GET">
-    <button type="submit">CREATE/MODIFY</button>
+<form action="/grdetadm/{{groupDet._id}}" method="POST"> 
+    <h2>Update Group</h2>
+
+    <label for="groupName">Group Name</label>
+    <input type="text" name="groupName" value="{{groupDet.groupName}}">
+
+    <label for="groupDescription">Group Description</label>
+    <input type="text" name="groupDescription" value="{{groupDet.groupDescription}}"> 
+
+    <button type="submit">Update</button>
 </form>  
 
-<form action="/grlistadm" method="POST">
+<form action="/grlistadm" method="GET">
     <button type="submit">BACK TO GROUPs</button>
 </form>    
-
-<form action="/melistadm" method="POST">
-    <button type="submit">BACK TO MEET UPs</button>
-</form>

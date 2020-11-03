@@ -12,20 +12,20 @@
 <h2>DETAILS</h2>
 
 <div>
-    <p>Name: {{meetup.name}}</p>
-    <p>Description: {{meetup.description}}</p>
-    <p>Date: {{meetup.date}}</p>
-    <p>Time: {{meetup.time}}</p>
+    <p>Name: {{meetupDet.name}}</p>
+    <p>Description: {{meetupDet.description}}</p>
+    <p>Date: {{meetupDet.date}}</p>
+    <p>Time: {{meetupDet.time}}</p>
     <p>Meeting point:</p>
-    <p>Country: {{meetup.country}}</p>
-    <p>City: {{meetup.city}}</p>
-    <p>Zip code: {{meetup.zipcode}}</p>
-    <p>Address: {{meetup.address}}</p>
-    <p>Number: {{meetup.addressnum}}</p>
+    <p>Country: {{meetupDet.country}}</p>
+    <p>City: {{meetupDet.city}}</p>
+    <p>Zip code: {{meetupDet.zipcode}}</p>
+    <p>Address: {{meetupDet.address}}</p>
+    <p>Number: {{meetupDet.addressnum}}</p>
     <img href="{{api}}" alt="point of meetup image">
 </div>
 
-<form action="/melistus" method="POST">
+<form action="/melistus/{{meetupDet.idGroup}}" method="POST">
     <button type="submit">BACK TO MEET UPs</button>
 </form>
 <form action="/grlistus" method="POST">

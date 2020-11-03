@@ -1,6 +1,6 @@
- <h1>MEET UPS</h1>
- <form action="/mecreadm" method="POST" id="form">
-    <h2>Create New Meet Up</h2>
+ <h1>EXCURSIONS</h1>
+ <form action="/mecreadm/{{idGroup}}" method="POST" id="form">
+    <h2>Create New Excursion</h2>
 
     <label for="name">Meet Up Name</label>
     <input type="text" name="name">
@@ -24,11 +24,15 @@
     <input type="text" name="zipcode">
 
     <label for="adress">Adress</label>
-    <input type="text" name="adress">
+    <input type="text" name="address">
 
     <label for="adressnum">Adress Number</label>
-    <input type="text" name="adressnum">
+    <input type="text" name="addressnum">
 
-    <button type="submit">Create</button>
+    <button type="submit">CREATE</button>
 
 </form>
+
+<form action="/melistadm/{{idGroup}}" method="GET">
+    <button type="submit">BACK TO EXCURSIONS</button>
+</form>   

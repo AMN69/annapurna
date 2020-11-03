@@ -11,33 +11,29 @@ _id.Group === idGroup.Meetup (unique, not array). --}}
 
 {{!-- In JS class we have to take the idGroup and read the Group name
 passing it here. So replace this.idPeople for Group name --}}
-<h2>Meet ups (for admin {{Meetup name}}):</h2>
+<h2>EXCURSIONS ADMIN (Group name: {{groupName}})</h2>
 
-{{#each Meetups}}
+{{#each meetupListAdmin}}
     <div class="meetup_list_admin">
         <p>{{this.name}}</p>
-        <form action="/mecreadm/{{this._id}}" method="GET">
+        <form action="/medetadm/{{this._id}}" method="GET">
             <button type="submit">EDIT</button>
         </form>
     </div>
 {{/each}}
-<form action="/mecreadm" method="GET">
+<form action="/mecreadm/{{idGroup}}" method="GET">
             <button type="submit">CREATE</button>
 </form>    
 
-<div>
+{{!-- <div>
     <form action="/mecreadm" method="GET">
             <button type="submit">Previous</button>
         </form>
         <form action="/melistadm/next/" method="GET">
             <button type="submit">Next</button>
         </form>
-</div>
+</div> --}}
 
-<form action="/medetadm" method="GET">
-            <button type="submit">CREATE</button>
-</form>     
-
-<form action="/melistadm/{{this.id}}" method="GET">
+<form action="/grlistadm" method="GET">
      <button type="submit">BACK TO GROUPS</button>
 </form>  
