@@ -129,9 +129,11 @@ router.get("/grlistus", withAuth, async (req, res, next) => {
     const user = req.user._id;
     try {
       const grListUsr = await Group.find();
+      console.log("THIS GROUPID first: ", grListUsr._id)
+      console.log("grListUsr: ", grListUsr)
       const grListUsrAndUsr = {data: grListUsr, user: user};
-      console.log("grListUsrAndUsr: ", grListUsrAndUsr)
-
+      console.log("THIS GROUPID: ", grListUsrAndUsr._id)
+  
       // To take all groupList and show first the user ones (Group.idPeople[] = user)
       res.render("auth/grlistus", {grListUsrAndUsr});
     } catch (error) {

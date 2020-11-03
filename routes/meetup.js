@@ -78,23 +78,24 @@ router.get("/medetadm:id", async (req, res, next) => {
 
 
 // GET Meetup list /melistus
-router.get("/melistus", withAuth, async (req, res, next) => {
-  if (req.user) {
-    const user = req.user._id;
-    try {
-      const meListUsr = await Meetup.find();
-      const meListUsrAndUsr = {data: meListUsr, user: user};
-      console.log("meListUsrAdnUsr: ", meListUsrAndUsr)
-
-      //To take all meetuplist and show user's ones on first place 
-      res.render("aut/melistus", {meListUsrAdnUsr});
+router.get("/melistus/:id", withAuth, async (req, res, next) => {
+  const idGroup = req.params.id;
+  try {
+    // console.log("idGroup: ", idGroup);
+    let groupData = await Group.findById({_id: idGroup});
+    // console.log("GroupData: ", groupData);
+    let groupName = groupData.groupName;
+    let meetupList = await Meetup.find({idGroup: idGroup});
+    // let thisUser = req.user._id;
+    // console.log("Meetup List: ", meetupList);
+    // console.log("Group name: ", groupData);
+    // console.log("User: ", req.user._id);
+    res.render("auth/melistus", {meetupList, groupName});
   } catch (error) {
     next(error);
     return;
     }
-  } else {
-    res.redirect("/");
-  }
+  
 });
 
 
@@ -111,12 +112,41 @@ router.get("/medetus:id", async (req, res, next) => {
   }
 });
 
+router.post('/medetus/add/:id', withAuth, async function(req, res, next) {
 
+  const idPeople = res.locals.currentUserInfo._id;
+  const idMeetup = req.params.id;
+  console.log("idPeople: ", idPeople);
+  console.log("idMeetup: ", idMeetup);
 
-
-  
-
-
+  try {
+    // const idPeopleIsIn = await Meetup.find({ 
+    //   idMeetup: { $elemMatch: { idPeople: idPeople } }
+    // });
+    // console.log("idPeopleIsIn: ", idPeopleIsIn);
+    const takeMeetup = await Meetup.findById(idMeetup);
+    let isWithinMeetup = false;
+    for (let i = 0; i < takeMeetup.idPeople.length; i++) {
+      if (takeMeetup.idPeople[i] == idPeople) {
+        console.log("ENCONTRADO!!!");
+        isWithinMeetup = true;
+      }
+    };
+    if (isWithinMeetup) {
+      console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
+      res.render('auth/medetus', {takeMeetup, meetupUpdated: "You are already in the excursion."})
+    } else {
+      console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
+      const updatedMeetup = await Meetup.findByIdAndUpdate(idMeetup, { $addToSet: {idPeople: idPeople} }, {new:true});    
+      console.log("updatedMeetup: ", updatedMeetup);
+      res.render('auth/medetus/:id', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
+    };
+  } 
+  catch (error) {
+    next(error);
+    return;
+  }
+});
 
 
 module.exports = router;

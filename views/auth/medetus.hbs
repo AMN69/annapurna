@@ -25,6 +25,21 @@
     <img href="{{api}}" alt="point of meetup image">
 </div>
 
+{{#if meetupUpdated}}
+    <p>{{meetupUpdated}}</p>
+{{else}}
+    <p>Please, modify and update data.</p>
+{{/if}}
+
+
+<form action="/medetus/add/{{meetupDet._id}}" method="POST">
+    <button type="submit">ADD +</button>
+</form>
+
+<form action="/melistus/remove/" method="POST">
+    <button type="submit">REMOVE -</button>
+</form>
+
 <form action="/melistus/{{meetupDet.idGroup}}" method="POST">
     <button type="submit">BACK TO MEET UPs</button>
 </form>
