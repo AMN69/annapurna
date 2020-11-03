@@ -9,33 +9,49 @@
 
 <h1>EXCURSION DETAILS</h1>
 
-<h2>DETAILS</h2>
-
-{{!-- to read an array we need to add .0 or .0. not sure which one --}}
-<div>
-    <p>Name: {{meetup.name}}</p>
-    <p>Description: {{meetup.description}}</p>
-    <p>Date: {{meetup.date}}</p>
-    <p>Time: {{meetup.time}}</p>
-    <p>Meeting point:</p>
-    <p>Country: {{meetup.country}}</p>
-    <p>City: {{meetup.city}}</p>
-    <p>Zip code: {{meetup.zipcode}}</p>
-    <p>Address: {{meetup.address}}</p>
-    <p>Number: {{meetup.addressnum}}</p>
-    {{!-- <p>Lat: {{meetup.mapPoint.0.}}</p>
-    <p>Lon: {{meetup.mapPoint.1.}}</p> --}}
-    <img="" alt="point of meetup image">
-</div>
-
 {{!-- Show message "Excursion updated" / "Excursion created" --}}
-<form action="/medetadm" method="GET">
-    <button type="submit">CREATE/MODIFY</button>
-</form>  
+<form action="/medetadm/{{meetupDet._id}}" method="POST">
+    <h2>Update Excursion</h2>
 
-<form action="/melistus" method="POST">
+    <label for="name">Meet Up Name</label>
+    <input type="text" name="name" value="{{meetupDet.name}}">
+
+    <label for="description">Meet Up Description</label>
+    <input type="text" name="description" value="{{meetupDet.description}}">
+
+    <label for="date">Date</label>
+    <input type="date" name="date" value="{{meetupDet.date}}">
+
+    <label for="time">Time</label>
+    <input type="time" name="time" value="{{meetupDet.time}}">
+
+    <label for="country">Country</label>
+    <input type="text" name="country" value="{{meetupDet.country}}">
+     
+    <label for="city">City</label>
+    <input type="text" name="city" value="{{meetupDet.city}}">
+
+    <label for="zipcode">Zipcode</label>
+    <input type="text" name="zipcode" value="{{meetupDet.zipcode}}">
+
+    <label for="adress">Adress</label>
+    <input type="text" name="address" value="{{meetupDet.address}}">
+
+    <label for="adressnum">Adress Number</label>
+    <input type="text" name="addressnum" value="{{meetupDet.addressnum}}">
+
+    <button type="submit">MODIFY</button>
+</form>
+
+{{#if meetupUpdated}}
+    <p>{{meetupUpdated}}</p>
+{{else}}
+    <p>Please, modify and update data.</p>
+{{/if}}
+
+<form action="/melistadm/{{meetupDet.idGroup}}" method="GET">
     <button type="submit">BACK TO MEET UPs</button>
 </form>
-<form action="/grlistus" method="POST">
+<form action="/grlistadm" method="GET">
     <button type="submit">BACK TO GROUPs</button>
 </form>    

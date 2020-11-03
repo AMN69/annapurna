@@ -41,14 +41,14 @@ router.post("/grcreadm", withAuth, async (req, res, next) => {
 
 router.get("/grlistadm", withAuth, async (req, res, next) => {
   if (req.user) {
-    const user = req.user;
+    // const user = req.user;
     const userId = req.user._id;
     console.log(userId, "ENCONTRAMOS EL USER ID");
     try {
-      const groupListAdmin = await Group.find();
+      const groupListAdmin = await Group.find({idAdmin: userId});
       console.log(groupListAdmin, "GROUP LIST!!!!");
       // To take all groupList and show first the user ones (Group.idPeople[] = user)
-      res.render("auth/grlistadm", groupListAdmin);
+      res.render("auth/grlistadm", {groupListAdmin});
     } catch (error) {
       next(err);
       return;
@@ -59,33 +59,41 @@ router.get("/grlistadm", withAuth, async (req, res, next) => {
 });
 
 //GET Group detail modify (admin)
-router.get("/grdetadm", (req, res, next) => {
-  res.render("auth/grdetadm");
+router.get("/grdetadm/:id", async (req, res, next) => {
+  const idGroup = req.params.id;
+  try {
+    let groupDet = await Group.findById({_id: idGroup});
+    res.render("auth/grdetadm", {groupDet});
+  } catch (error) {
+      next(err);
+      return;
+  }
 });
 
-// router.post('/grcreadm', withAuth, function(req, res, next) {
+//POST Group detail (admin /grdetadm
 
-//   const { adminName, adminSurname, groupName, groupDescription } = req.body; 
-//   console.log(req.user._id)
-//   const theNewGroup = new Group ({
-//     idAmin : "23498723",
-//     adminName,
-//     adminSurname,
-//     groupName,
-//     groupDescription,
-//   })
+router.post('/grdetadm/:id', async (req, res, next) => {
+  const idGroup = req.params.id;
+  const { groupName, groupDescription } = req.body;
+  const updateGroup = {
+    // adminName: 
+    // adminSurname: 
+    groupName,
+    groupDescription
+  };
 
-//   theNewGroup.save ((err) => {
-//     if (err) {
-//       res.render('auth/grcreadm', {
-//         title: "Create a New Group"
-//       });
-//     }
-//     else {
-//       res.redirect('/grlistadm');
-//     }
-//   })
-// });
+  try {
+    await Group.findByIdAndUpdate(idGroup, updateGroup, {
+      new: true,
+    });
+  } catch (error) {
+    next(error);
+    return;
+  }
+  const toRender = "auth/grdetadm/" + idGroup;
+  res.render(toRender); // Pending to send message with "Group updated"
+
+});
 
 //GET Group List (Admin)
 
@@ -108,25 +116,6 @@ router.get("/grlistadm", withAuth, async (req, res, next) => {
   }      
 });
 
-//GET Group detail modify (admin) 
-router.get("/grdetadm", (req, res, next) => {
-    res.render("auth/grdetadm");
-});
-
-
-
-//POST Group detail (admin /grdetadm
-
-router.post('/grdetadm', function(req, res, next) {
-  
-  const theNewGroup = new Group ({
-    adminName: req.body.adminName,
-    adminSurname: req.body.adminSurname,
-    groupName: req.body.groupName,
-    groupDescription: req.body.groupDescription,
-  });
-});
-
 //GET Group list /grlistus
 router.get("/grlistus", withAuth, async (req, res, next) => {
   if (req.user) {
@@ -143,27 +132,5 @@ router.get("/grlistus", withAuth, async (req, res, next) => {
     res.redirect("/");
   }
 });
-
-  // POST Update Group list /grlistus NO ME QUEDA CLARO COMO HACERLO. TENGO COPIADO EL DE ADMIN
-
-//   router.post("/grlistus", function (req, res, next) {
-//     const theNewGroup = new Group({
-//       adminName: req.body.group.adminName,
-//       adminSurname: req.body.group.adminSurname,
-//       groupName: req.body.group.groupName,
-//       groupDescription: req.body.group.groupDescription,
-//     });
-
-//     theNewGroup.save((err) => {
-//       if (err) {
-//         res.render("/grdetadm", {
-//           title: "Create a New Group",
-//         });
-//       } else {
-//         res.redirect("/grlistus");
-//       }
-//     });
-//   });
-// });
 
 module.exports = router;

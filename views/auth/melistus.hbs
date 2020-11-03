@@ -8,11 +8,11 @@
 we list first idMeetups and later other Meetups --}}
 {{!-- Table = meetup --}}
 
-<h1>EXCURSIONS</h1>
+<h1>EXCURSIONS USER (Group name: {{groupName}})</h1>
 
 {{!-- In JS class we have to take the idGroup and read the Group name 
 passing it here. So replace this.idPeople for Group name --}}
-<h2>List of excursions (for group {{groupName}}):</h2>
+<h2>List of excursions:</h2>
 
 {{#each meetupList}}
     <div class="meetup_list_user">
@@ -37,17 +37,16 @@ passing it here. So replace this.idPeople for Group name --}}
     </div>
 {{/each}}
 
-<div>
+{{!-- <div>
     <form action="/melistus/previous/" method="GET">
             <button type="submit">Previous</button>
         </form>
         <form action="/melistus/next/" method="GET">
             <button type="submit">Next</button>
         </form>
-</div>
+</div> --}}
 
 {{!-- to read an array we need to add .0 or .0. not sure which one --}}
-{{!-- <form action="/grlistus/{{this.idPersona.0.}}" method="GET"> --}}
-<form action="/grlistus/" method="GET"></form>
+<form action="/grlistus" method="GET">
      <button type="submit">BACK TO GROUPS</button>
 </form>  
