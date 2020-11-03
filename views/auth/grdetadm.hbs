@@ -22,6 +22,12 @@
     <button type="submit">Update</button>
 </form>  
 
+{{#if groupUpdated}}
+    <p>{{groupUpdated}}</p>
+{{else}}
+    <p>Please, modify and update data.</p>
+{{/if}}
+
 <form action="/grlistadm" method="GET">
     <button type="submit">BACK TO GROUPs</button>
 </form>    

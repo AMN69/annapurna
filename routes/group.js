@@ -61,14 +61,21 @@ router.get("/grlistadm", withAuth, async (req, res, next) => {
 //GET Group detail modify (admin)
 router.get("/grdetadm/:id", async (req, res, next) => {
   const idGroup = req.params.id;
+  const updated = req.query.updated;
   try {
     let groupDet = await Group.findById({_id: idGroup});
-    res.render("auth/grdetadm", {groupDet});
+    console.log("groupDet: ", groupDet);
+    if (updated) {
+      res.render("auth/grdetadm", {groupDet, groupUpdated: "Group updated"});
+    } else {
+      res.render("auth/grdetadm", {groupDet});
+    }
   } catch (error) {
-      next(err);
+      next(error);
       return;
   }
 });
+
 
 //POST Group detail (admin /grdetadm
 
@@ -86,13 +93,13 @@ router.post('/grdetadm/:id', async (req, res, next) => {
     await Group.findByIdAndUpdate(idGroup, updateGroup, {
       new: true,
     });
-  } catch (error) {
-    next(error);
-    return;
-  }
-  const toRender = "auth/grdetadm/" + idGroup;
-  res.render(toRender); // Pending to send message with "Group updated"
-
+  
+  const toRedirect = "/grdetadm/" + idGroup + "?updated=true";
+  res.redirect(toRedirect);  
+} catch (error) {
+  next(error);
+  return;
+}
 });
 
 //GET Group List (Admin)
@@ -119,13 +126,16 @@ router.get("/grlistadm", withAuth, async (req, res, next) => {
 //GET Group list /grlistus
 router.get("/grlistus", withAuth, async (req, res, next) => {
   if (req.user) {
-    // const user = req.user;
+    const user = req.user._id;
     try {
-      const groupListUser = await Group.find();
+      const grListUsr = await Group.find();
+      const grListUsrAndUsr = {data: grListUsr, user: user};
+      console.log("grListUsrAndUsr: ", grListUsrAndUsr)
+
       // To take all groupList and show first the user ones (Group.idPeople[] = user)
-      res.render("auth/grlistus", {groupListUser});
+      res.render("auth/grlistus", {grListUsrAndUsr});
     } catch (error) {
-      next(err);
+      next(error);
       return;
     }
   } else {
