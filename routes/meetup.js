@@ -18,7 +18,7 @@ router.get("/mecreadm", withAuth, async (req, res, next) => {
 
 router.post('/mecreadm', function(req, res, next) {
 
-  const { name, description, date, time, country, city, zipcode, adress, adressnum, mapPoint } = req.body; 
+  const { name, description, date, time, country, city, zipcode, address, addressnum, mapPoint } = req.body; 
   
   const theNewMeetup = new Meetup ({
     name,
@@ -28,8 +28,8 @@ router.post('/mecreadm', function(req, res, next) {
     country,
     city,
     zipcode,
-    adress,
-    adressnum,
+    address,
+    addressnum,
     mapPoint 
   })
 
@@ -78,13 +78,15 @@ router.get("/medetadm:id", async (req, res, next) => {
 
 
 // GET Meetup list /melistus
-router.get("/melistus:id", async (req, res, next) => {
+router.get("/melistus/:id", async (req, res, next) => {
   const idGroup = req.params.id;
   try {
-    let meetupList = await Meetup.find([{idGroup: idGroup}]);
-    res.render("auth/melistus", meetupList);
+
+    let meetupList = await Meetup.find({idGroup: idGroup});
+    console.log("Meetup Populate: ", meetupList);
+    res.render("auth/melistus", {meetupList});
   } catch (error) {
-    next(err);
+    next(error);
     return;
   }
 });

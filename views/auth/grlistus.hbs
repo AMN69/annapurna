@@ -12,9 +12,9 @@ idGroups[].Group === _id.People and later other Groups --}}
 
 <h2>List of groups:</h2>
 
-{{#each groups}}
+{{#each groupListUser}}
     <div class="group_list_user">
-        <p>{{this.name}}</p>
+        <p>{{this.groupName}}</p>
         <form action="/melistus/{{this._id}}" method="GET">
             <button type="submit">MEET UPs</button>
         </form>
