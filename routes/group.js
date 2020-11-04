@@ -135,7 +135,12 @@ router.get("/grlistus", withAuth, async (req, res, next) => {
       console.log("THIS GROUPID: ", grListUsrAndUsr._id)
   
       // To take all groupList and show first the user ones (Group.idPeople[] = user)
-      res.render("auth/grlistus", {grListUsrAndUsr});
+      if (updated) {
+        res.render("auth/grlistus", {grListUsrAndUsr, groupUpdated: "You have been added to the group."})
+      } else {
+        res.render("auth/grlistus", {grListUsrAndUsr});
+      }
+      
     } catch (error) {
       next(error);
       return;
@@ -144,6 +149,46 @@ router.get("/grlistus", withAuth, async (req, res, next) => {
     res.redirect("/");
   }
 });
+
+
+//POST Groupd list add grlistus
+
+router.post('/grlistus/add/:id', withAuth, async function(req, res, next) {
+  const idPeople = res.locals.currentUserInfo._id;
+  const idGroup = req.params.id;
+  console.log("idPeople: ", idPeople);
+  console.log("idGroup: ", idGroup);
+  try {
+    // const idPeopleIsIn = await Meetup.find({ 
+    //   idMeetup: { $elemMatch: { idPeople: idPeople } }
+    // });
+    // console.log("idPeopleIsIn: ", idPeopleIsIn);
+    const takeGroup = await Group.findById(idGroup);
+    let isWithinGroup = false;
+    for (let i = 0; i < takeGroup.idPeople.length; i++) {
+      if (takeGroup.idPeople[i] == idPeople) {
+        console.log("ENCONTRADO!!!");
+        isWithinGroup = true;
+      }
+    };
+    if (isWithinGroup) {
+      console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
+      res.render('auth/grlistus', {takeGroup, groupUpdated: "You are already in this group."})
+    } else {
+      console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
+      const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $addToSet: {idPeople: idPeople} }, {new:true});    
+      console.log("updatedGroup: ", updatedGroup);
+      // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
+      res.render('auth/grlistus', {takeGroup, groupUpdated: "You've joined this group."})
+    };
+  } 
+  catch (error) {
+    next(error);
+    return;
+  }
+});
+
+
 
 module.exports = router;
 

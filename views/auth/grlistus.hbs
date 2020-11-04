@@ -10,7 +10,14 @@ idGroups[].Group === _id.People and later other Groups --}}
 
 <h1>GROUPS</h1>
 
+
 <h2>List of groups:</h2>
+{{#if groupUpdated}}
+    <p>{{groupUpdated}}</p>
+{{else}}
+    <p>You can see group excursions, join or leave groups</p>
+{{/if}}
+
 {{#each grListUsrAndUsr.data}}
     <div class="group_list_user">
         <p>{{this.groupName}}</p>
@@ -31,10 +38,10 @@ idGroups[].Group === _id.People and later other Groups --}}
         <form action="/melistus/{{this._id}}" method="GET">
                 <button type="submit">MEET UPs</button>
         </form>
-        <form action="/grlistus/remove/" method="GET">
+        <form action="/grlistus/remove/" method="POST">
             <button type="submit">REMOVE -</button>
         </form>
-        <form action="/grlistus/add/" method="GET">
+        <form action="/grlistus/add/{{this._id}}" method="POST">
             <button type="submit">ADD +</button>
         </form>
     </div>
