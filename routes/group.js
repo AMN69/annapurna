@@ -164,23 +164,24 @@ router.post('/grlistus/add/:id', withAuth, async function(req, res, next) {
     //   idMeetup: { $elemMatch: { idPeople: idPeople } }
     // });
     // console.log("idPeopleIsIn: ", idPeopleIsIn);
-    const takeGroup = await Group.findById(idGroup);
+    const grListUsrAndUsr = await Group.findById(idGroup);
     let isWithinGroup = false;
-    for (let i = 0; i < takeGroup.idPeople.length; i++) {
-      if (takeGroup.idPeople[i] == idPeople) {
+    for (let i = 0; i < grListUsrAndUsr.idPeople.length; i++) {
+      if (grListUsrAndUsr.idPeople[i] == idPeople) {
         console.log("ENCONTRADO!!!");
         isWithinGroup = true;
       }
     };
+  
     if (isWithinGroup) {
       console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
-      res.render('auth/grlistus', {takeGroup, groupUpdated: "You are already in this group."})
+      res.render('auth/grlistus', {grListUsrAndUsr, groupUpdated: "You are already in this group."})
     } else {
       console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
       const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $addToSet: {idPeople: idPeople} }, {new:true});    
       console.log("updatedGroup: ", updatedGroup);
       // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
-      res.render('auth/grlistus', {takeGroup, groupUpdated: "You've joined this group."})
+      res.render('auth/grlistus', {grListUsrAndUsr, groupUpdated: "You've joined this group."})
     };
   } 
   catch (error) {
@@ -201,10 +202,10 @@ router.post('/grlistus/remove/:id', withAuth, async function(req, res, next) {
     //   idMeetup: { $elemMatch: { idPeople: idPeople } }
     // });
     // console.log("idPeopleIsIn: ", idPeopleIsIn);
-    const takeGroup = await Group.findById(idGroup);
+    const grListUsrAndUsr = await Group.findById(idGroup);
     let isWithinGroup = false;
-    for (let i = 0; i < takeGroup.idPeople.length; i++) {
-      if (takeGroup.idPeople[i] == idPeople) {
+    for (let i = 0; i < grListUsrAndUsr.idPeople.length; i++) {
+      if (grListUsrAndUsr.idPeople[i] == idPeople) {
         console.log("ENCONTRADO!!!");
         isWithinGroup = true;
       }
@@ -212,10 +213,10 @@ router.post('/grlistus/remove/:id', withAuth, async function(req, res, next) {
     if (isWithinGroup) {
       console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
       const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $pull: {idPeople: idPeople} }, {new:false}); 
-      res.render('auth/grlistus', {takeGroup, groupUpdated: "You've left this group"})
+      res.render('auth/grlistus', {grListUsrAndUsr, groupUpdated: "You've left this group"})
     } else { 
       // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
-      res.render('auth/grlistus', {takeGroup, groupUpdated: "You've not joined this group yet."})
+      res.render('auth/grlistus', {grListUsrAndUsr, groupUpdated: "You've not joined this group yet."})
     };
   } 
   catch (error) {
