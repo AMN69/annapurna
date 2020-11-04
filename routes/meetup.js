@@ -12,16 +12,15 @@ const Group = require("../models/group");
 
 
 ////GET MEETUP CREATE (admin)
-router.get("/mecreadm", withAuth, async (req, res, next) => {
-  res.render("auth/mecreadm");
+router.get("/mecreadm/:id", withAuth, async (req, res, next) => {
+  const idGroup = req.params.id;
+  res.render("auth/mecreadm", {idGroup});
 });
 
 //POST Meetup create (admin)
-
-router.post('/mecreadm', function(req, res, next) {
-
-  const { name, description, date, time, country, city, zipcode, adress, adressnum, mapPoint } = req.body; 
-  
+router.post('/mecreadm/:id', function(req, res, next) {
+  const idGroup = req.params.id;
+  const { name, description, date, time, country, city, zipcode, address, addressnum, mapPoint } = req.body; 
   const theNewMeetup = new Meetup ({
     name,
     description,
@@ -30,12 +29,11 @@ router.post('/mecreadm', function(req, res, next) {
     country,
     city,
     zipcode,
-    adress,
-    adressnum,
-    mapPoint 
-  })
-
-
+    address,
+    addressnum,
+    mapPoint,
+    idGroup: idGroup
+  });
   theNewMeetup.save ((err) => {
     if (err) {
       console.log(err)
@@ -44,27 +42,12 @@ router.post('/mecreadm', function(req, res, next) {
       });
     }
     else {
-      res.redirect('/melistadm');
+      const redirect = "/melistadm/" + idGroup;
+      console.log("Redirect: ", redirect);
+      res.redirect(redirect); //pending sending message "Excursion created."
     }
   })
 });
-//GET MEETUP LIST ADMIN
-
-// router.get("/melistadm", withAuth, async (req, res, next) => {
-//   if (req.user) {
-//     const user = req.user;
-//       try {
-//         const meetupListAdmin = await Meetup.find();
-//         // To take all meetuplist and show the ones the groups have (Group.idPeople[] = user)
-//         res.render("auth/melistadm", meetupListAdmin);
-//       } catch (error) {
-//         next(err);
-//         return;
-//       }
-//   } else {
-//     res.redirect("/");
-//   }      
-// });
 
 router.get("/melistadm/:id", withAuth, async (req, res, next) => {
   if (req.user) {
@@ -86,18 +69,6 @@ router.get("/melistadm/:id", withAuth, async (req, res, next) => {
     res.redirect("/");
   }      
 });
-
-//GET Meetup detail (admin) /medetadm
-// router.get("/medetadm/:id", async (req, res, next) => {
-//   const idMeetup = req.params.id;
-//   try {
-//     let meetupList = await Meetup.findById(idMeetup);
-//     res.render("auth/melistadm", meetupList);
-//   } catch (error) {
-//     next(error);
-//     return;
-//   }
-// });
 
 router.get("/medetadm/:id", async (req, res, next) => {
   const idMeetup = req.params.id;
