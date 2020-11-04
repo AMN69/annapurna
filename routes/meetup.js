@@ -50,15 +50,36 @@ router.post('/mecreadm', function(req, res, next) {
 });
 //GET MEETUP LIST ADMIN
 
-router.get("/melistadm", withAuth, async (req, res, next) => {
+// router.get("/melistadm", withAuth, async (req, res, next) => {
+//   if (req.user) {
+//     const user = req.user;
+//       try {
+//         const meetupListAdmin = await Meetup.find();
+//         // To take all meetuplist and show the ones the groups have (Group.idPeople[] = user)
+//         res.render("auth/melistadm", meetupListAdmin);
+//       } catch (error) {
+//         next(err);
+//         return;
+//       }
+//   } else {
+//     res.redirect("/");
+//   }      
+// });
+
+router.get("/melistadm/:id", withAuth, async (req, res, next) => {
   if (req.user) {
-    const user = req.user;
+      const idGroup = req.params.id;
+    // const user = req.user;
       try {
-        const meetupListAdmin = await Meetup.find();
+        let groupData = await Group.findById({_id: idGroup});
+        let groupName = groupData.groupName;
+        console.log("id Group: ", idGroup);
+        const meetupListAdmin = await Meetup.find({idGroup: idGroup});
+        console.log("Lista meetups: ", meetupListAdmin);
         // To take all meetuplist and show the ones the groups have (Group.idPeople[] = user)
-        res.render("auth/melistadm", meetupListAdmin);
+        res.render("auth/melistadm", {meetupListAdmin, groupName, idGroup});
       } catch (error) {
-        next(err);
+        next(error);
         return;
       }
   } else {
@@ -67,13 +88,31 @@ router.get("/melistadm", withAuth, async (req, res, next) => {
 });
 
 //GET Meetup detail (admin) /medetadm
-router.get("/medetadm:id", async (req, res, next) => {
+// router.get("/medetadm/:id", async (req, res, next) => {
+//   const idMeetup = req.params.id;
+//   try {
+//     let meetupList = await Meetup.findById(idMeetup);
+//     res.render("auth/melistadm", meetupList);
+//   } catch (error) {
+//     next(error);
+//     return;
+//   }
+// });
+
+router.get("/medetadm/:id", async (req, res, next) => {
   const idMeetup = req.params.id;
+  const updated = req.query.updated;
   try {
-    let meetupList = await Meetup.find([{idGroup: idGroup}]);
-    res.render("auth/melistadm", meetupList);
+    let meetupDet = await Meetup.findById({_id: idMeetup});
+    // const toRender = "auth/medetadm" + idMeetup
+    console.log("MeetupDet: ", meetupDet);
+    if (updated) {
+      res.render("auth/medetadm", {meetupDet, meetupUpdated: "Excursion updated"});
+    } else {
+      res.render("auth/medetadm", {meetupDet});
+    }
   } catch (error) {
-    next(err);
+    next(error);
     return;
   }
 });
