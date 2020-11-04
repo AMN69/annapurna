@@ -13,6 +13,7 @@ idAdmin.Group === _id.People --}}
 {{#each groupListAdmin}}
     <div class="group_list_admin">
         <p>{{this.groupName}}</p>
+        <p>{{this.groupDescription}}</p>
         <form action="/melistadm/{{this._id}}" method="GET">
             <button type="submit">MEET UPs</button>
         </form>
