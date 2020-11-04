@@ -88,6 +88,37 @@ router.get("/medetadm/:id", async (req, res, next) => {
   }
 });
 
+//GET Meetup detail (admin) /medetadm
+router.post("/medetadm/:id", async (req, res, next) => {
+  const idMeetup = req.params.id;
+  const { name, description, date, time, country, city, zipcode, address, addressnum, mapPoint } = req.body;
+  const updateMeetup = {
+    name,
+    description,
+    date,
+    time,
+    country,
+    city,
+    zipcode,
+    address,
+    addressnum,
+    // mapPoint
+    // idPeople: idPeople,
+    // idGroup: idGroup
+  };
+
+  try {
+    await Meetup.findByIdAndUpdate(idMeetup, updateMeetup, {
+      new: true,
+    });
+    const toRedirect = "/medetadm/" + idMeetup + "?updated=true";
+    // res.locals.meetupUpdated = "Excursion updated.";
+    res.redirect(toRedirect); // Pending to send message with "Excursion updated"
+  } catch (error) {
+    next(error);
+    return;
+  }
+});
 
 // GET Meetup list /melistus
 router.get("/melistus/:id", withAuth, async (req, res, next) => {
@@ -122,6 +153,7 @@ router.get("/medetus/:id", async (req, res, next) => {
     let meetupDet = await Meetup.findById(idMeetup);
     console.log("meetupDet: ", meetupDet);
     const api = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=" + process.env.API_KEY + "&co=" + meetupDet.country + "&ci=" + meetupDet.city + "&zi=" + meetupDet.zipcode + "&s=" + meetupDet.address + "&n=" + meetupDet.addressnum + "&z=17&h=320&f=1";
+    console.log("API: ", api);
     if (action === "added") {
       res.render("auth/medetus", {meetupDet, api, meetupUpdated: "You have been added to the excursion."})
     } else if (action === "removed") {
