@@ -148,5 +148,43 @@ router.post('/medetus/add/:id', withAuth, async function(req, res, next) {
   }
 });
 
+//REMOVE
+router.post('/medetus/remove/:id', withAuth, async function(req, res, next) {
+
+  const idPeople = res.locals.currentUserInfo._id;
+  const idMeetup = req.params.id;
+  console.log("idPeople: ", idPeople);
+  console.log("idMeetup: ", idMeetup);
+
+  try {
+    // const idPeopleIsIn = await Meetup.find({ 
+    //   idMeetup: { $elemMatch: { idPeople: idPeople } }
+    // });
+    // console.log("idPeopleIsIn: ", idPeopleIsIn);
+    const takeMeetup = await Meetup.findById(idMeetup);
+    let isWithinMeetup = true;
+    for (let i = 0; i < takeMeetup.idPeople.length; i++) {
+      if (takeMeetup.idPeople[i] == idPeople) {
+        console.log("ENCONTRADO!!!");
+        isWithinMeetup = true;
+      }
+    };
+    if (isWithinMeetup) {
+      console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
+      const updatedMeetup = await Meetup.findByIdAndUpdate(idMeetup, { $removeFromSet: {idPeople: idPeople} }, {new:false});
+      res.render('auth/medetus/:id', {takeMeetup, meetupUpdated: "You have been removed from the excursion."}) 
+      
+    } else {
+      console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
+      res.render('auth/medetus', {takeMeetup, meetupUpdated: "You are already in the excursion."})   
+      console.log("updatedMeetup: ", updatedMeetup);
+      
+    };
+  } 
+  catch (error) {
+    next(error);
+    return;
+  }
+});
 
 module.exports = router;
