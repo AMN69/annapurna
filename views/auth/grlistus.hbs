@@ -38,7 +38,7 @@ idGroups[].Group === _id.People and later other Groups --}}
         <form action="/melistus/{{this._id}}" method="GET">
                 <button type="submit">MEET UPs</button>
         </form>
-        <form action="/grlistus/remove/" method="POST">
+        <form action="/grlistus/remove/{{this._id}}" method="POST">
             <button type="submit">REMOVE -</button>
         </form>
         <form action="/grlistus/add/{{this._id}}" method="POST">
