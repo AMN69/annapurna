@@ -117,11 +117,16 @@ router.get("/melistus/:id", withAuth, async (req, res, next) => {
 router.get("/medetus/:id", async (req, res, next) => {
   // console.log("Entra en metdeus");
   const idMeetup = req.params.id;
+  const updated = req.query.updated;
   try {
     let meetupDet = await Meetup.findById(idMeetup);
     console.log("meetupDet: ", meetupDet);
     const api = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=" + process.env.API_KEY + "&co=" + meetupDet.country + "&ci=" + meetupDet.city + "&zi=" + meetupDet.zipcode + "&s=" + meetupDet.address + "&n=" + meetupDet.addressnum + "&z=17&h=320&f=1";
-    res.render("auth/medetus", {meetupDet, api});
+    if (updated) {
+      res.render("auth/medetus", {meetupDet, api, meetupUpdated: "You have been added to the excursion."})
+    } else {
+      res.render("auth/medetus", {meetupDet, api});
+    }
   } catch (error) {
     next(error);
     return;
@@ -132,6 +137,7 @@ router.post('/medetus/add/:id', withAuth, async function(req, res, next) {
 
   const idPeople = res.locals.currentUserInfo._id;
   const idMeetup = req.params.id;
+  
   console.log("idPeople: ", idPeople);
   console.log("idMeetup: ", idMeetup);
 
@@ -155,7 +161,8 @@ router.post('/medetus/add/:id', withAuth, async function(req, res, next) {
       console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
       const updatedMeetup = await Meetup.findByIdAndUpdate(idMeetup, { $addToSet: {idPeople: idPeople} }, {new:true});    
       console.log("updatedMeetup: ", updatedMeetup);
-      res.render('auth/medetus/:id', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
+      // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
+      res.redirect('/medetus/' + idMeetup + "?added=true")
     };
   } 
   catch (error) {
@@ -163,6 +170,5 @@ router.post('/medetus/add/:id', withAuth, async function(req, res, next) {
     return;
   }
 });
-
 
 module.exports = router;
