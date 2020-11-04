@@ -94,7 +94,7 @@ router.get("/melistus/:id", withAuth, async (req, res, next) => {
   const idGroup = req.params.id;
   try {
     // console.log("idGroup: ", idGroup);
-    let groupData = await Group.findById({_id: idGroup});
+    let groupData = await Group.findById(idGroup);
     // console.log("GroupData: ", groupData);
     let groupName = groupData.groupName;
     let meetupList = await Meetup.find({idGroup: idGroup});
@@ -113,17 +113,19 @@ router.get("/melistus/:id", withAuth, async (req, res, next) => {
 
 
 //GET Meetup detail (user) /medetus
-// console.log("Justo antes de metdetus:id");
 router.get("/medetus/:id", async (req, res, next) => {
-  // console.log("Entra en metdeus");
   const idMeetup = req.params.id;
-  const updated = req.query.updated;
+  const action = req.query.action;
+  console.log("req.query.added: ", req.query.action);
+  console.log("updated: ", action);
   try {
     let meetupDet = await Meetup.findById(idMeetup);
     console.log("meetupDet: ", meetupDet);
     const api = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=" + process.env.API_KEY + "&co=" + meetupDet.country + "&ci=" + meetupDet.city + "&zi=" + meetupDet.zipcode + "&s=" + meetupDet.address + "&n=" + meetupDet.addressnum + "&z=17&h=320&f=1";
-    if (updated) {
+    if (action === "added") {
       res.render("auth/medetus", {meetupDet, api, meetupUpdated: "You have been added to the excursion."})
+    } else if (action === "removed") {
+      res.render("auth/medetus", {meetupDet, api, meetupUpdated: "You have been removed from the excursion."})
     } else {
       res.render("auth/medetus", {meetupDet, api});
     }
@@ -142,27 +144,55 @@ router.post('/medetus/add/:id', withAuth, async function(req, res, next) {
   console.log("idMeetup: ", idMeetup);
 
   try {
-    // const idPeopleIsIn = await Meetup.find({ 
-    //   idMeetup: { $elemMatch: { idPeople: idPeople } }
-    // });
-    // console.log("idPeopleIsIn: ", idPeopleIsIn);
-    const takeMeetup = await Meetup.findById(idMeetup);
+    const meetupDet = await Meetup.findById(idMeetup);
     let isWithinMeetup = false;
-    for (let i = 0; i < takeMeetup.idPeople.length; i++) {
-      if (takeMeetup.idPeople[i] == idPeople) {
+    for (let i = 0; i < meetupDet.idPeople.length; i++) {
+      if (meetupDet.idPeople[i] == idPeople) {
         console.log("ENCONTRADO!!!");
         isWithinMeetup = true;
       }
     };
     if (isWithinMeetup) {
       console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
-      res.render('auth/medetus', {takeMeetup, meetupUpdated: "You are already in the excursion."})
+      res.render('auth/medetus', {meetupDet, meetupUpdated: "You are already in the excursion."})
     } else {
       console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
       const updatedMeetup = await Meetup.findByIdAndUpdate(idMeetup, { $addToSet: {idPeople: idPeople} }, {new:true});    
       console.log("updatedMeetup: ", updatedMeetup);
+      res.redirect('/medetus/' + idMeetup + "?action=added")
+    };
+  } 
+  catch (error) {
+    next(error);
+    return;
+  }
+});
+
+router.post('/medetus/remove/:id', withAuth, async function(req, res, next) {
+
+  const idPeople = res.locals.currentUserInfo._id;
+  const idMeetup = req.params.id;
+  
+  console.log("idPeople: ", idPeople);
+  console.log("idMeetup: ", idMeetup);
+
+  try {
+    const meetupDet = await Meetup.findById(idMeetup);
+    let isWithinMeetup = false;
+    for (let i = 0; i < meetupDet.idPeople.length; i++) {
+      if (meetupDet.idPeople[i] == idPeople) {
+        console.log("ENCONTRADO!!!");
+        isWithinMeetup = true;
+      }
+    };
+    if (!isWithinMeetup) {
+      res.render('auth/medetus', {meetupDet, meetupUpdated: "You aren't a participant in the excursion, so we didn't remove you."})
+    } else {
+      // const updatedMeetup = await Meetup.findByIdAndUpdate(idMeetup, { $removeFromSet: {idPeople: idPeople} }, {new:true});    
+      const updatedMeetup = await Meetup.findByIdAndUpdate(idMeetup, { $pull: {idPeople: idPeople} }, {new:true});    
+      console.log("updatedMeetup: ", updatedMeetup);
       // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
-      res.redirect('/medetus/' + idMeetup + "?added=true")
+      res.redirect('/medetus/' + idMeetup + "?action=removed")
     };
   } 
   catch (error) {

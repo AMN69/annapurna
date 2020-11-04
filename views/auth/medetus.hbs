@@ -36,13 +36,13 @@
     <button type="submit">ADD +</button>
 </form>
 
-<form action="/melistus/remove/" method="POST">
+<form action="/medetus/remove/{{meetupDet._id}}" method="POST">
     <button type="submit">REMOVE -</button>
 </form>
 
-<form action="/melistus/{{meetupDet.idGroup}}" method="POST">
+<form action="/melistus/{{meetupDet.idGroup}}" method="GET">
     <button type="submit">BACK TO MEET UPs</button>
 </form>
-<form action="/grlistus" method="POST">
+<form action="/grlistus" method="GET">
     <button type="submit">BACK TO GROUPs</button>
 </form>    
