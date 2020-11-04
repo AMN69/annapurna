@@ -22,13 +22,13 @@
     <p>Zip code: {{meetupDet.zipcode}}</p>
     <p>Address: {{meetupDet.address}}</p>
     <p>Number: {{meetupDet.addressnum}}</p>
-    <img href="{{api}}" alt="point of meetup image">
+    <img src="{{api}}" alt="point of meetup image">
 </div>
 
 {{#if meetupUpdated}}
     <p>{{meetupUpdated}}</p>
 {{else}}
-    <p>Please, modify and update data.</p>
+    <p>You can join or leave an excursion.</p>
 {{/if}}
 
 
@@ -36,13 +36,13 @@
     <button type="submit">ADD +</button>
 </form>
 
-<form action="/melistus/remove/" method="POST">
+<form action="/medetus/remove/{{meetupDet._id}}" method="POST">
     <button type="submit">REMOVE -</button>
 </form>
 
-<form action="/melistus/{{meetupDet.idGroup}}" method="POST">
+<form action="/melistus/{{meetupDet.idGroup}}" method="GET">
     <button type="submit">BACK TO MEET UPs</button>
 </form>
-<form action="/grlistus" method="POST">
+<form action="/grlistus" method="GET">
     <button type="submit">BACK TO GROUPs</button>
 </form>    
