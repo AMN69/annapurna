@@ -146,3 +146,21 @@ router.get("/grlistus", withAuth, async (req, res, next) => {
 });
 
 module.exports = router;
+
+// const takeGroup = await Group.findById(idGroup);
+//     let isWithinGroup = false;
+//     for (let i = 0; i < takeGroup.idPeople.length; i++) {
+//       if (takeGroup.idPeople[i] == idPeople) {
+//         console.log("ENCONTRADO PEOPLE IN GROUP!!!");
+//         isWithinGroup = true;
+//       }
+//     };
+//     if (isWithinGroup) {
+//       console.log("ENCONTRADO People en Group Y ENTRA POR ENCONTRADO");
+//       res.render('auth/grlistus', {takeGroup, groupUpdated: "You are already a member of the Group."})
+//     } else {
+//       console.log("NO ENCONTRADO People en Group Y DEBERIA HABERLO ENCONTRADO");
+//       const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $addToSet: {idPeople: idPeople} }, {new:true});    
+//       console.log("updatedGroup: ", updatedGroup);
+//       res.render('auth/grlistus', {takeGroup, groupUpdated: "You are now a member of the Group."})
+//     };

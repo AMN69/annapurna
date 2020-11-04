@@ -9,14 +9,15 @@ body {
   height: 100vh;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url(../images/annabackgr.jpg);
+  /* background-image: url(../images/annabackgr.jpg); */
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  background-color: #3f4146;
+  /* background-color: #3f4146; */
   text-align: center;
-  color: #CBCCCB;
+  /* color: #CBCCCB; */
+  color: black;
   font-family: "Times New Roman", Times, serif;
 }
 
