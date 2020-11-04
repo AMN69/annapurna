@@ -144,9 +144,10 @@ router.get("/melistus/:id", withAuth, async (req, res, next) => {
 
 
 //GET Meetup detail (user) /medetus
-router.get("/medetus/:id", async (req, res, next) => {
+router.get("/medetus/:id", withAuth, async (req, res, next) => {
   const idMeetup = req.params.id;
   const action = req.query.action;
+  const idPeople = res.locals.currentUserInfo._id;
   console.log("req.query.added: ", req.query.action);
   console.log("updated: ", action);
   try {
@@ -154,12 +155,19 @@ router.get("/medetus/:id", async (req, res, next) => {
     console.log("meetupDet: ", meetupDet);
     const api = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=" + process.env.API_KEY + "&co=" + meetupDet.country + "&ci=" + meetupDet.city + "&zi=" + meetupDet.zipcode + "&s=" + meetupDet.address + "&n=" + meetupDet.addressnum + "&z=17&h=320&f=1";
     console.log("API: ", api);
+    let isWithinMeetup = false;
+    for (let i = 0; i < meetupDet.idPeople.length; i++) {
+      if (meetupDet.idPeople[i] == idPeople) {
+        console.log("ENCONTRADO!!!");
+        isWithinMeetup = true;
+      }
+    }
     if (action === "added") {
-      res.render("auth/medetus", {meetupDet, api, meetupUpdated: "You have been added to the excursion."})
+      res.render("auth/medetus", {meetupDet, isWithinMeetup, api, meetupUpdated: "You have been added to the excursion."})
     } else if (action === "removed") {
-      res.render("auth/medetus", {meetupDet, api, meetupUpdated: "You have been removed from the excursion."})
+      res.render("auth/medetus", {meetupDet, isWithinMeetup, api, meetupUpdated: "You have been removed from the excursion."})
     } else {
-      res.render("auth/medetus", {meetupDet, api});
+      res.render("auth/medetus", {meetupDet, isWithinMeetup, api});
     }
   } catch (error) {
     next(error);

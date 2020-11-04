@@ -180,13 +180,13 @@ router.post('/grlistus/add/:id', withAuth, async function(req, res, next) {
   
     if (isWithinGroup) {
       console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
-      res.redirect("auth/grlistus/?action=addedNO");
+      res.redirect("/grlistus/?action=addedNO");
     } else {
       console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
       const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $addToSet: {idPeople: idPeople} }, {new:true});    
       console.log("updatedGroup: ", updatedGroup);
       // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
-      res.redirect("auth/grlistus/?action=addedYES");
+      res.redirect("/grlistus/?action=addedYES");
     };
   } 
   catch (error) {
@@ -217,13 +217,13 @@ router.post('/grlistus/add/:id', withAuth, async function(req, res, next) {
     };
     if (isWithinGroup) {
       console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
-      res.redirect("auth/grlistus/?action=removedNO");
+      res.redirect("/grlistus/?action=removedNO");
     } else {
       console.log("NO ENCONTRADO Y DEBERIA HABERLO ENCONTRADO");
-      const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $addToSet: {idPeople: idPeople} }, {new:true});    
+      const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $pull: {idPeople: idPeople} }, {new:true});    
       console.log("updatedGroup: ", updatedGroup);
       // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
-      res.redirect("auth/grlistus/?action=removedYES");
+      res.redirect("/grlistus/?action=removedYES");
     };
   } 
   catch (error) {
@@ -255,11 +255,10 @@ router.post('/grlistus/remove/:id', withAuth, async function(req, res, next) {
     if (isWithinGroup) {
       console.log("ENCONTRADO Y ENTRA POR ENCONTRADO");
       const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $pull: {idPeople: idPeople} }, {new:false}); 
-      res.render('auth/grlistus', {takeGroup, groupUpdated: "You've left this group"})
-      res.redirect('auth/grlistus', {takeGroup, groupUpdated: "You've left this group"})
+      res.redirect('/grlistus/?action=removedYES')
     } else { 
       // res.render('auth/medetus/', {takeMeetup, meetupUpdated: "You have been added to the excursion."})
-      res.render('auth/grlistus', {takeGroup, groupUpdated: "You've not joined this group yet."})
+      res.redirect('/grlistus/?action=removedNO')
     };
   } 
   catch (error) {

@@ -32,13 +32,23 @@
 {{/if}}
 
 
-<form action="/medetus/add/{{meetupDet._id}}" method="POST">
+{{#if isWithinMeetup}}
+    <form action="/medetus/remove/{{meetupDet._id}}" method="POST">
+        <button type="submit">REMOVE -</button>
+    </form> 
+{{else}}
+    <form action="/medetus/add/{{meetupDet._id}}" method="POST">
+        <button type="submit">ADD +</button>
+    </form>
+{{/if}}
+
+{{!-- <form action="/medetus/add/{{meetupDet._id}}" method="POST">
     <button type="submit">ADD +</button>
 </form>
 
 <form action="/medetus/remove/{{meetupDet._id}}" method="POST">
     <button type="submit">REMOVE -</button>
-</form>
+</form> --}}
 
 <form action="/melistus/{{meetupDet.idGroup}}" method="GET">
     <button type="submit">BACK TO MEET UPs</button>
