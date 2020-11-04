@@ -14,6 +14,21 @@ hbs.registerHelper('ifCond', function(v1, v2, options) {
   return options.inverse(this);
 });
 
+hbs.registerHelper('ifNotCond', function(v1, v2, options) {
+  if(v1 != v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+hbs.registerHelper('ifEmpty', function(v1, options) {
+  if(v1.length == 0) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
+
 const mongoose = require("mongoose");
 
 // We replace the Bd name by the name within the MONGODB_URI var that is in .env file
