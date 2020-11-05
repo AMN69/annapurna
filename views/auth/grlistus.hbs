@@ -22,27 +22,11 @@ idGroups[].Group === _id.People and later other Groups --}}
     <div class="group_list_user">
         <p>{{this.groupName}}</p>
         <p>{{this.groupDescription}}</p>
-        
-        {{!-- <form action="/melistus/{{this._id}}" method="GET">
-            <button type="submit">MEET UPs</button>
-        </form> --}}
-        {{!-- The ADD means (if enabled / REMOVE disabled) --> 
-            a) In the group table to add _id.People to idPeople[].Group
-            b) In the people table to add _id.Group to idGroup[].People 
-            c) render this page (grlistus) with new situation
-            
-            The REMOVE means (if enabled / ADD disabled) -->
-            a) In the group table to remove _id.People from idPeople[].Group
-            b) In the people table to remove _id.Group from idGroup[].People --}}
-
-        <form action="/melistus/{{this._id}}" method="GET">
-                <button type="submit">MEET UPs</button>
-        </form>
-
-        <p>This idPeople = {{this.idPeople}}</p>
-        <p>This user = {{../grListUsrAndUsr.user}}</p>
         {{#each this.idPeople}}
             {{#ifCond this ../../grListUsrAndUsr.user}}
+                <form action="/melistus/{{../this._id}}" method="GET">
+                    <button type="submit">MEET UPs</button>
+                </form>
                 <form action="/grlistus/remove/{{../this._id}}" method="POST">
                     <button type="submit">REMOVE -</button>
                 </form>
@@ -55,28 +39,9 @@ idGroups[].Group === _id.People and later other Groups --}}
         {{/each}}
 
         {{#ifEmpty this.idPeople}}
-            <form action="/grlistus/add/{{../this._id}}" method="POST">
+            <form action="/grlistus/add/{{this._id}}" method="POST">
                 <button type="submit">ADD +</button>
             </form>
         {{/ifEmpty}}
-
-        {{!-- <form action="/grlistus/remove/{{this._id}}" method="POST">
-            <button type="submit">REMOVE -</button>
-        </form>
-        <form action="/grlistus/add/{{this._id}}" method="POST">
-            <button type="submit">ADD +</button>
-        </form> --}}
     </div>
 {{/each}}
-
-<div>
-    <form action="/grlistus/" method="GET">
-            <button type="submit">Previous</button>
-        </form>
-        <form action="/grlistus/next/" method="GET">
-            <button type="submit">Next</button>
-        </form>
-</div>
-
-
-

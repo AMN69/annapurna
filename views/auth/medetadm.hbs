@@ -9,7 +9,6 @@
 
 <h1>EXCURSION DETAILS</h1>
 
-{{!-- Show message "Excursion updated" / "Excursion created" --}}
 <form action="/medetadm/{{meetupDet._id}}" method="POST">
     <h2>Update Excursion</h2>
 
@@ -20,7 +19,7 @@
     <input type="text" name="description" value="{{meetupDet.description}}">
 
     <label for="date">Date</label>
-    <input type="date" name="date" value="{{meetupDet.date}}">
+    <input type="date" name="date" value="{{htmlDate}}">
 
     <label for="time">Time</label>
     <input type="time" name="time" value="{{meetupDet.time}}">
