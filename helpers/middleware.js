@@ -16,14 +16,14 @@ const withAuth = async (req, res, next) => {
         } else {
             // verificamos el token
             const decoded = await jwt.verify(token, secret);
-            console.log("decoded: ", decoded);
+            // console.log("decoded: ", decoded);
 
             // si el token valida, configuramos req.user con el valor del usuario decodificado
             req.user = decoded.peopleWithoutPass;
-            console.log("req.user: ", req.user);
+            // console.log("req.user: ", req.user);
             // esto nos sirve para hacer validaciones en las plantillas de hbs
             res.locals.currentUserInfo = req.user;
-            console.log("res.locals.currentUserInfo: ", res.locals.currentUserInfo);
+            // console.log("res.locals.currentUserInfo: ", res.locals.currentUserInfo);
             res.locals.isUserLoggedIn = true;
             next();
         }

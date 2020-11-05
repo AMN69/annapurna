@@ -10,8 +10,6 @@ we list first idMeetups and later other Meetups --}}
 
 <h1>EXCURSIONS USER (Group name: {{groupName}})</h1>
 
-{{!-- In JS class we have to take the idGroup and read the Group name 
-passing it here. So replace this.idPeople for Group name --}}
 <h2>List of excursions:</h2>
 
 {{#each meetupList}}
@@ -32,16 +30,6 @@ passing it here. So replace this.idPeople for Group name --}}
     </div>
 {{/each}}
 
-{{!-- <div>
-    <form action="/melistus/previous/" method="GET">
-            <button type="submit">Previous</button>
-        </form>
-        <form action="/melistus/next/" method="GET">
-            <button type="submit">Next</button>
-        </form>
-</div> --}}
-
-{{!-- to read an array we need to add .0 or .0. not sure which one --}}
 <form action="/grlistus" method="GET">
      <button type="submit" class="button-backto">BACK TO GROUPS</button>
 </form>  
