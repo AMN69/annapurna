@@ -196,9 +196,6 @@ An user will see the list of people taking part in a meet up (if they have autho
 
 Admins will see list of people in each group and total number of people.
 
- An Admin should see past excursions (current version only shows excursions that are going to be taken place in the future)
-
-
 
 
 
