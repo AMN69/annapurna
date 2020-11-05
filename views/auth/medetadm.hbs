@@ -8,36 +8,44 @@
 {{!-- Table = meetup --}}
 
 <h1>EXCURSION DETAILS</h1>
-
-<form action="/medetadm/{{meetupDet._id}}" method="POST">
+<div>
     <h2>Update Excursion</h2>
+<form action="/medetadm/{{meetupDet._id}}" method="POST" class="login">
+    
 
     <label for="name">Meet Up Name</label>
-    <input type="text" name="name" value="{{meetupDet.name}}">
+    <input type="text" name="name" class="login-input" value="{{meetupDet.name}}">
 
     <label for="description">Meet Up Description</label>
-    <input type="text" name="description" value="{{meetupDet.description}}">
-
+      </br>
+    <input type="text" name="description" class="login-input" value="{{meetupDet.description}}">
+    </br>
     <label for="date">Date</label>
-    <input type="date" name="date" value="{{htmlDate}}">
-
+      </br>
+    <input type="date" name="date" class="login-input" value="{{htmlDate}}">
+    </br>
     <label for="time">Time</label>
-    <input type="time" name="time" value="{{meetupDet.time}}">
-
+      </br>
+    <input type="time" name="time" class="login-input" value="{{meetupDet.time}}">
+    </br>
     <label for="country">Country</label>
-    <input type="text" name="country" value="{{meetupDet.country}}">
-     
+      </br>
+    <input type="text" name="country" class="login-input" value="{{meetupDet.country}}">
+       </br>
     <label for="city">City</label>
-    <input type="text" name="city" value="{{meetupDet.city}}">
-
+      </br>
+    <input type="text" name="city" class="login-input" value="{{meetupDet.city}}">
+  </br>
     <label for="zipcode">Zipcode</label>
-    <input type="text" name="zipcode" value="{{meetupDet.zipcode}}">
-
+      </br>
+    <input type="text" name="zipcode" class="login-input" value="{{meetupDet.zipcode}}">
+  </br>
     <label for="adress">Adress</label>
-    <input type="text" name="address" value="{{meetupDet.address}}">
-
+      </br>
+    <input type="text" name="address" class="login-input" value="{{meetupDet.address}}">
+  </br>
     <label for="adressnum">Adress Number</label>
-    <input type="text" name="addressnum" value="{{meetupDet.addressnum}}">
+    <input type="text" name="addressnum" class="login-input" value="{{meetupDet.addressnum}}">
 
     <button type="submit">MODIFY</button>
 </form>

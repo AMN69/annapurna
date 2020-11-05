@@ -32,7 +32,7 @@ idGroups[].Group === _id.People and later other Groups --}}
         {{#each this.idPeople}}
             {{#ifCond this ../../grListUsrAndUsr.user}}
 
-                <form action="/melistus/{{this._id}}" method="GET">
+                <form action="/melistus/{{../this._id}}" method="GET">
                 <button type="submit" class="button-editdetails">MEET UPs</button>
                 </form>
                 <form action="/grlistus/remove/{{../this._id}}" method="POST">
@@ -51,19 +51,10 @@ idGroups[].Group === _id.People and later other Groups --}}
                 <button type="submit" class="button-addremove">ADD +</button>
             </form>
         {{/ifEmpty}}
-<<<<<<< HEAD
-
-       
-=======
->>>>>>> intermediate
     </div>
 </div>
 {{/each}}
 
-<<<<<<< HEAD
-
-=======
->>>>>>> intermediate
 
 
 

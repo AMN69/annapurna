@@ -5,41 +5,41 @@
 {{!-- We keep the token with all info except password (_id is a must) --}}
 {{!-- Table = people --}}
 
-<form id="form" action="/signup" method="POST">  
+<form id="form" class="login" action="/signup" method="POST">  
   <h2>Sign Up</h2>
   <label for="email">Email</label>
   <br />
-  <input type="email" name="email" placeholder="Your email" />
+  <input type="email" name="email" placeholder="Your email" class="login-input" />
 
   <label for="password">Password</label>
   <br />
-  <input type="password" name="password" placeholder="********" />
+  <input type="password" name="password" placeholder="********" class="login-input" />
 
   <label for="name">Name</label>
   <br />
-  <input type="text" name="name" />
+  <input type="text" name="name" class="login-input" />
 
   <label for="surname">Surname</label>
   <br />
-  <input type="text" name="surname" />
+  <input type="text" name="surname" class="login-input"/>
 
   <label for="age">Age</label>
   <br />
-  <input type="number" name="age" />
+  <input type="number" name="age" class="login-input" />
 
   <label for="hobbies">Hobbies</label>
   <br />
-  <input type="text" name="hobbies" />
+  <input type="text" name="hobbies" class="login-input"/>
 
   <label for="admin">Admin?</label>
   <br />
-  <input type="checkbox" name="admin" />
+  <input type="checkbox" name="admin" class="login-input"/>
 
   {{#if errorMessage }}
     <div class="error-message">{{ errorMessage }}</div>
   {{/if}}
 
-  <button type="submit">Create account</button>
+  <button type="submit" class="submit">Create account</button>
 </form>
 
 {{#if errorMessage}}

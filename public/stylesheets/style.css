@@ -33,7 +33,12 @@ body {
 
 
 a {
-  color: #00b7ff;
+  color: #fff;
+}
+
+a:hover{
+  text-decoration: none;
+  color: #3f4146;
 }
 
 
@@ -44,18 +49,56 @@ font-size: 8%;
 
 h2 {
 font-family: optima;
+font-size: 1.1rem;
+margin-top: 2.1rem;
+opacity: 80%;
 }
 
-h3 {
-  font-family: Love ya like a sister; 
+h6 {
+  font-family: optima; 
   color: #3F4146;
-  font-size: 1.5rem;
+  font-size: 0.8rem;
+  opacity: 60%;
   }
 
+
+.button-home {
+  background-color: #897C68;
+  border-radius: 2rem;
+  font-family: optima;
+  width: 5rem;
+  opacity: 80%;
+  margin: 1rem;
+  padding: 0.8rem;
+
+}
+
 #form {
-  margin: 50px auto;
-  /* width: 380px; */
-  width: 80%;
+  margin: 0px auto;
+  width: 30%;
+  padding: 1rem;
+  background-color: #897C68;
+  border-radius: 2rem;
+  opacity: 80%;
+  font-weight: 500;
+}
+
+.login {
+  margin: 0px auto;
+  width: 30%;
+  padding: 1rem;
+  background-color: #897C68;
+  border-radius: 2rem;
+  opacity: 70%;
+}
+
+.login-input {
+ border-radius: 2rem;
+}
+
+.submit{
+  border-radius: 2rem;
+  width: 50%;
 }
 
 #form h2 {
@@ -82,9 +125,9 @@ h3 {
 }
 
 #form button {
-  background: #43a3e6;
-  border: 1px solid #43a3e6;
-  border-radius: 4px;
+  background: #8a8e91;
+  border: 1px solid #8a8e91;
+  border-radius: 2rem;
   color: #fff;
   cursor: pointer;
   display: inline-block;
@@ -97,8 +140,8 @@ h3 {
 }
 
 #form button:hover {
-  background: #fff;
-  color: #43a3e6;
+  background: #3f4146;
+  color: #fff;
   transition: 0.3s ease background;
 }
 
@@ -113,9 +156,8 @@ h3 {
 
 
 nav {
-  /* background: #262626; */
-  padding: 25px 0;
-  font-family: serif;
+  
+  font-family: optima;
   
 
 }
@@ -126,15 +168,15 @@ nav .wrapper{
 
 nav .wrapper a{
   text-transform: uppercase;
-  color: #262626;
+  color: #3f4146;
   text-decoration: none;
-  padding: 0 10px;
-  opacity: 90;
+  padding: 10px;
+  opacity: 80;
 }
 
 nav .wrapper a:hover{
   color: white;
-  opacity: 1;
+  opacity: 90%;
 }
 
 .container-list{
@@ -142,13 +184,15 @@ nav .wrapper a:hover{
   justify-content: center;
   border: 0.5px solid #CBCCCB;
   display: flex;
+  flex-direction: row;
+ 
   
 }
 
-.buttons-addremovemeet {
-  display: block;
+.addremovemeet {
+  display: inline-flex;
   flex-direction: row;
-  width: 15%;
+ 
 
   
 
@@ -162,7 +206,8 @@ nav .wrapper a:hover{
   opacity: 85%;
   margin: 2%;
   padding: 1%;
-  width: 80%;
+  width: 70%;
+
 
   
 }
@@ -171,15 +216,18 @@ p {
 }
 
 .p-title {
-  font-size: 1.4 rem;
+  font-size: 110%;
+  font-weight: 600;
+  opacity: 70%;
+  font-family: inherit;
   color: #3f4146;
-  font-weight: 500;
-  opacity: 100%;
+  
 }
 
 .p-descrip {
  font-size: 90%;
- color: #6E6A6A;
+ color: #897C68;
+ font-weight: 500;
 }
 
 .nav-div {
@@ -190,17 +238,18 @@ p {
 
 .wrapper {
   display: flex;
-  width: 50%;
+  width: 60%;
+  margin-top: 5rem;
 }
 
 .wrapper > a {
   display: flex;
   justify-content: right;
   width: 33%;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 }
 
-.h1-class, .form-create, .button-create {
+.h1-class {
   display: flex;
   font-size: 2rem;
   justify-content: space-around;
@@ -208,23 +257,29 @@ p {
 }
 
 .form-create {
-  margin: 10% 2%;
   display: flex;
+  margin: 2%;
   vertical-align: middle;
+  font-size: 1.6rem;
+  justify-content: space-around;
 }
 
 .button-create {
   border-radius: 10rem;
-  border-width: 1rem;
-  background-color: #CBCCCB;
-  margin: 10%;
+  background-color: #897C68;
+  border-style: none;
   padding: 2%;
-  font-size: 1.1rem;
-  font-family: cinzel;
+  font-size: 0.7rem;
+  font-family: optima;
+  font-weight: 100;
+  color: white;
   display: flex;
+  opacity: 90%;
 }
 .button-create:hover{
 color: #897C68;
+background-color: white;
+transition-duration: 0.4s;
 }
 
 .button-addremove {
@@ -242,8 +297,8 @@ color: #897C68;
   cursor: pointer;
 }
 .button-addremove:hover {
-  background-color: #6E6A6A;
-  color: white;
+  background-color: white;
+  color: #6E6A6A;
 }
 
 .button-editdetails { 
@@ -254,7 +309,7 @@ color: #897C68;
   padding: 0.7rem 0.7rem;
   text-align: center;
   text-decoration: none;
-  display: inline-block;
+  display: flex;
   font-size: 0.8rem;
   margin: 4px 2px;
   transition-duration: 0.4s;
@@ -289,11 +344,21 @@ background-color: #6E6A6A;
 color: white;
 }
 
+.welcome-message {
+  font-size: 0.8rem;
+  color: #6E6A6A;
+  font-family: optima;
+}
 /* For PC/Tablet horizontal nav-bar active and dropdown not active. */
 .dropdown {
   display: none;
 }
 
+.name-form {
+  font-family: optima;
+  border-radius: 1rem;
+  boder-style: none;
+}
 
 
 @media (max-width: 414px) { /* For mobile 414px */
@@ -329,31 +394,34 @@ color: white;
   }
 
   .logo {
-    height: 30%;
-    width: 30%;
+    vertical-align: middle;
+    background-size: auto;
+    opacity: 90%;
     /* margin-right: 55%; */
   }
 
-  .h1-class, .form-create, .button-create {
+  .h1-class, .form-create {
     display: flex;
     font-size: 1.2rem;
     justify-content: space-around;
   }  
 
   .form-create {
-    margin: 10% 2%;
+    margin: 1rem;
     display: flex;
     vertical-align: middle;
   }
 
-  .button-create {
-    margin: 10%;
-    padding: 2%;
-    font-size: 1.2rem;
-    display: flex;
+  .div-bottom {
+    margin-top: 1rem;
   }
+ 
 
-  
+  .updated {
+    background: white;
+    color: white;
+
+  }
 /*para background responsive */
 @media only screen and (max-device-width: 767px) {
     body {

@@ -8,25 +8,30 @@
 {{!-- Table = group --}}
 
 <h1>GROUP DETAILS</h1>
+<div>
 
-<form action="/grdetadm/{{groupDet._id}}" method="POST"> 
-    <h2>Update Group</h2>
+<h2>Update Group</h2>
+
+<form action="/grdetadm/{{groupDet._id}}" method="POST" class="login"> 
+    
 
     <label for="groupName">Group Name</label>
-    <input type="text" name="groupName" value="{{groupDet.groupName}}">
+    </br>
+    <input type="text" name="groupName" class="login-input" value="{{groupDet.groupName}}">
 
     <label for="groupDescription">Group Description</label>
-    <input type="text" name="groupDescription" value="{{groupDet.groupDescription}}"> 
-
-    <button type="submit">Update</button>
+    <input type="text" name="groupDescription" class="login-input" value="{{groupDet.groupDescription}}"> 
+    </br>
+    </br>
+    <button type="submit" class="submit">Update</button>
 </form>  
-
+</div>
 {{#if groupUpdated}}
-    <p>{{groupUpdated}}</p>
+    <p class="updated">{{groupUpdated}}</p>
 {{else}}
-    <p>Please, modify and update data.</p>
+    <p class="updated">Please, modify and update data.</p>
 {{/if}}
 
 <form action="/grlistadm" method="GET">
-    <button type="submit" class="button-backto">BACK TO GROUPs</button>
+    <button type="submit" class="button-backto">BACK TO GROUPS</button>
 </form>    
