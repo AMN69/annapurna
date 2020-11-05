@@ -1,11 +1,12 @@
 /**
  * Moves the map to display over Berlin
  *
- * @param  {H.Map} map      A HERE Map instance within the application
+//  * @param  {H.Map} map      A HERE Map instance within the application
  */
-function moveMapToBerlin(map){
-    map.setCenter({lat:52.5159, lng:13.3777});
-    map.setZoom(14);
+
+ function moveMapToBerlin(map){
+    map.setCenter({lat:41.38879, lng:2.15899});
+    map.setZoom(10);
   }
   
   /**
@@ -15,7 +16,8 @@ function moveMapToBerlin(map){
   //Step 1: initialize communication with the platform
   // In your own code, replace variable window.apikey with your own apikey
   var platform = new H.service.Platform({
-    apikey: process.env.API_KEY
+    apikey: "8h5lXXll3zO_hFQT2b_jH8x9NOGoi5OjhgQ3w8JBVYA"
+    // apikey: process.env.API_KEY
     // apikey: window.apikey
   });
   var defaultLayers = platform.createDefaultLayers();
@@ -27,6 +29,7 @@ function moveMapToBerlin(map){
     zoom: 4,
     pixelRatio: window.devicePixelRatio || 1
   });
+  console.log("After map: ", map);
   // add a resize listener to make sure that the map occupies the whole container
   window.addEventListener('resize', () => map.getViewPort().resize());
   
