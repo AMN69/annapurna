@@ -25,6 +25,11 @@ const withAuth = async (req, res, next) => {
             res.locals.currentUserInfo = req.user;
             // console.log("res.locals.currentUserInfo: ", res.locals.currentUserInfo);
             res.locals.isUserLoggedIn = true;
+            if (req.user.isAdmin) {
+                res.locals.isAdmin = true;
+            } else {
+                res.locals.isAdmin = false;
+            } 
             next();
         }
     } catch (error) {

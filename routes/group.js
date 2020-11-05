@@ -197,34 +197,6 @@ router.post('/grlistus/add/:id', withAuth, async function(req, res, next) {
 
 //POST Groupd list remove grlistus
 
-router.post('/grlistus/add/:id', withAuth, async function(req, res, next) {
-  const idPeople = res.locals.currentUserInfo._id;
-  const idGroup = req.params.id;
-  console.log("idPeople: ", idPeople);
-  console.log("idGroup: ", idGroup);
-  try {
-    const takeGroup = await Group.findById(idGroup);
-    let isWithinGroup = false;
-    for (let i = 0; i < takeGroup.idPeople.length; i++) {
-      if (takeGroup.idPeople[i] == idPeople) {
-        isWithinGroup = true;
-      }
-    };
-    if (isWithinGroup) {
-      res.redirect("/grlistus/?action=removedNO");
-    } else {
-      const updatedGroup = await Group.findByIdAndUpdate(idGroup, { $pull: {idPeople: idPeople} }, {new:true});
-      res.redirect("/grlistus/?action=removedYES");
-    };
-  } 
-  catch (error) {
-    next(error);
-    return;
-  }
-});
-
-//POST Groupd list remove grlistus
-
 router.post('/grlistus/remove/:id', withAuth, async function(req, res, next) {
   const idPeople = res.locals.currentUserInfo._id;
   const idGroup = req.params.id;

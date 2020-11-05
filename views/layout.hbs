@@ -10,7 +10,18 @@
   <link rel="icon" href="../images/favicon/favicon-32x32.png" sizes="32x32" type="image/vnd.microsoft.icon">
   <link rel="apple-touch-icon-precomposed" href="../images/favicon/apple-touch-icon.png" type="image/vnd.microsoft.icon" sizes="152x152">
   <link rel="icon" href="../images/favicon/favicon.png-32x32.png" sizes="96x96" type="image/vnd.microsoft.icon">
-
+  {{!-- Andreu-changes-for-map-start --}}
+  <link rel="stylesheet" type="text/css" href="https://js.api.here.com/v3/3.1/mapsjs-ui.css" />
+    <link rel="stylesheet" type="text/css" href="demo.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link rel="stylesheet" type="text/css" href="../template.css" />
+    <script type="text/javascript" src='../test-credentials.js'></script>    
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-core.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-service.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-ui.js"></script>
+    <script type="text/javascript" src="https://js.api.here.com/v3/3.1/mapsjs-mapevents.js"></script>
+    <script type="text/javascript" >window.ENV_VARIABLE = 'https://developer.here.com'</script><script src='https://developer.here.com/javascript/src/iframeheight.js'></script>
+  {{!-- Andreu-changes-for-map-end --}}
 </head>
 
 <body>
@@ -20,11 +31,17 @@
         <img class="logo" src="./images/annapurna.png" alt="app logo">
         <div class="wrapper">
           <a href="/">Home</a>
+
           {{#if isUserLoggedIn}}
-            <a href="/secret">Protected page</a>
-            <a href="/logout">Logout</a>
+            {{#if isAdmin}}
+              <a href="/grlistadm">Groups</a>
+              <a href="/logout">Logout</a>
+            {{else}}
+              <a href="/grlistus">Groups</a>
+              <a href="/logout">Logout</a>
+            {{/if}}
           {{else}}
-            <a href="/signup">Sign up</a>
+            <a href="/signup">Sign Up</a>
             <a href="/login">Login</a>
           {{/if}}
         </div>
@@ -34,11 +51,16 @@
           </button>
           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
             {{#if isUserLoggedIn}}
-              <a class="dropdown-item" href="/">Main</a>
-              <a class="dropdown-item" href="/logout">Logout</a>  
+              {{#if isAdmin}}
+                <a class="dropdown-item" href="/grlistadm">Groups</a>
+                <a class="dropdown-item" href="/logout">Logout</a> 
+              {{else}}
+                <a class="dropdown-item" href="/grlistus">Groups</a>
+                <a class="dropdown-item" href="/logout">Logout</a> 
+              {{/if}}
             {{else}}
-              <a class="dropdown-item" href="/login">Login</a>
-              <a class="dropdown-item" href="/signup">Signup</a>
+                <a class="dropdown-item" href="/signup">Sign Up</a>
+                <a class="dropdown-item" href="/login">Login</a>
             {{/if}}  
           </div>
         </div>

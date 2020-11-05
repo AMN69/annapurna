@@ -17,16 +17,7 @@ we list first idMeetups and later other Meetups --}}
         <p>{{this.name}}</p>
         <form action="/medetus/{{this._id}}" method="GET">
             <button type="submit" class="button-editdetails">DETAILS</button>
-        </form>
-        {{!-- The ADD means (if enabled / REMOVE disabled) --> 
-            a) In the meetup table to add _id.People to idPeople[].Meetup
-            b) In the people table to add _id.Meetup to idMeetup[].People 
-            c) render this page (melistus) with new situation
-            
-            The REMOVE means (if enabled / ADD disabled) -->
-            a) In the meetup table to remove _id.People from idPeople[].Meetup
-            b) In the people table to remove _id.Meetup from idMeetup[].People --}}
-                
+        </form>                
     </div>
 {{/each}}
 

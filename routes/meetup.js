@@ -73,6 +73,7 @@ router.get("/medetadm/:id", withAuth, async (req, res, next) => {
   const updated = req.query.updated;
   try {
     let meetupDet = await Meetup.findById({_id: idMeetup});
+    const api = "https://image.maps.ls.hereapi.com/mia/1.6/mapview?apiKey=" + process.env.API_KEY + "&co=" + meetupDet.country + "&ci=" + meetupDet.city + "&zi=" + meetupDet.zipcode + "&s=" + meetupDet.address + "&n=" + meetupDet.addressnum + "&z=17&h=320&f=1";
     // const toRender = "auth/medetadm" + idMeetup
     console.log("MeetupDet: ", meetupDet);
     // var date = new Date('Wed Jun 29 2011 09:52:48 GMT-0700 (PDT)');
@@ -93,9 +94,9 @@ router.get("/medetadm/:id", withAuth, async (req, res, next) => {
     
     // console.log(htmlDate);
     if (updated) {
-      res.render("auth/medetadm", {meetupDet, htmlDate, meetupUpdated: "Excursion updated"});
+      res.render("auth/medetadm", {meetupDet, api, htmlDate, meetupUpdated: "Excursion updated"});
     } else {
-      res.render("auth/medetadm", {meetupDet, htmlDate});
+      res.render("auth/medetadm", {meetupDet, api, htmlDate});
     }
   } catch (error) {
     next(error);
@@ -148,8 +149,6 @@ router.get("/melistus/:id", withAuth, async (req, res, next) => {
     }
   
 });
-
-
 
 //GET Meetup detail (user) /medetus
 router.get("/medetus/:id", withAuth, async (req, res, next) => {
