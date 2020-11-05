@@ -36,7 +36,7 @@ idGroups[].Group === _id.People and later other Groups --}}
             b) In the people table to remove _id.Group from idGroup[].People --}}
 
         <form action="/melistus/{{this._id}}" method="GET">
-                <button type="submit">MEET UPs</button>
+                <button type="submit" class="button-editdetails">MEET UPs</button>
         </form>
 
         <p>This idPeople = {{this.idPeople}}</p>
@@ -44,19 +44,19 @@ idGroups[].Group === _id.People and later other Groups --}}
         {{#each this.idPeople}}
             {{#ifCond this ../../grListUsrAndUsr.user}}
                 <form action="/grlistus/remove/{{../this._id}}" method="POST">
-                    <button type="submit">REMOVE -</button>
+                    <button type="submit" class="button-addremove">REMOVE -</button>
                 </form>
             {{/ifCond}}
             {{#ifNotCond this ../../grListUsrAndUsr.user}}
                 <form action="/grlistus/add/{{../this._id}}" method="POST">
-                    <button type="submit">ADD +</button>
+                    <button type="submit" class="button-addremove">ADD +</button>
                 </form>
             {{/ifNotCond}}
         {{/each}}
 
         {{#ifEmpty this.idPeople}}
             <form action="/grlistus/add/{{../this._id}}" method="POST">
-                <button type="submit">ADD +</button>
+                <button type="submit" class="button-addremove">ADD +</button>
             </form>
         {{/ifEmpty}}
 
@@ -71,10 +71,10 @@ idGroups[].Group === _id.People and later other Groups --}}
 
 <div>
     <form action="/grlistus/" method="GET">
-            <button type="submit">Previous</button>
+            <button type="submit" class="button-backto">Previous</button>
         </form>
         <form action="/grlistus/next/" method="GET">
-            <button type="submit">Next</button>
+            <button type="submit" class="button-backto">Next</button>
         </form>
 </div>
 

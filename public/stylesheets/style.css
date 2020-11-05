@@ -5,25 +5,40 @@
   box-sizing: border-box;
 }
 
+
 body {
   height: 100vh;
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  /* background-image: url(../images/annabackgr.jpg); */
+  background-image: url(../images/annabackgr.jpg);
   background-position: center center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
-  /* background-color: #3f4146; */
+  background-color: #3f4146;
   text-align: center;
-  /* color: #CBCCCB; */
-  color: black;
-  font-family: "Times New Roman", Times, serif;
+  color: #3F4146;
+  font-family: Tahoma, sans-serif, Times, serif;
 }
 
 a {
   color: #00b7ff;
 }
+
+h1 {
+font-family: cinzel;  
+font-size: 8%;
+}
+
+h2 {
+font-family: cinzel;
+}
+
+h3 {
+  font-family: Love ya like a sister; 
+  color: #3F4146;
+  font-size: 1.5rem;
+  }
 
 #form {
   margin: 50px auto;
@@ -87,6 +102,7 @@ a {
 nav {
   /* background: #262626; */
   padding: 25px 0;
+  font-family: cinzel;
 }
 
 nav .wrapper{
@@ -143,12 +159,80 @@ nav .wrapper a:hover{
 }
 
 .button-create {
+  border-radius: 10rem;
+  border-width: 1rem;
+  background-color: #CBCCCB;
   margin: 10%;
   padding: 2%;
-  font-size: 2rem;
+  font-size: 1.1rem;
+  font-family: cinzel;
   display: flex;
 }
+.button-create:hover{
+color: #897C68;
+}
 
+.button-addremove {
+  background-color: #897C68; 
+  border: none;
+  border-radius: 10rem;
+  color: white;
+  padding: 0.7rem 0.7rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.7rem;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+.button-addremove:hover {
+  background-color: #6E6A6A;
+  color: white;
+}
+
+.button-editdetails { 
+  background-color: #CBCCCB; 
+  border: none;
+  border-radius: 0.9rem;
+  color: #6E6A6A;
+  padding: 0.7rem 0.7rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8rem;
+  margin: 4px 2px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+.button-editdetails:hover{
+background-color: #6E6A6A;
+color: white;
+}
+
+.button-backto { 
+  background-color: #6E6A6A; 
+  border: none;
+  border-radius: 0.7rem;
+  color: #CBCCCB;
+  padding: 0.7rem 0.7rem;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.8rem;
+  margin: 4px 2px;
+  opacity: 80%;
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+
+.button-backto:hover{
+background-color: #6E6A6A;
+color: white;
+}
 
 /* For PC/Tablet horizontal nav-bar active and dropdown not active. */
 .dropdown {
@@ -215,13 +299,13 @@ nav .wrapper a:hover{
 @media only screen and (max-device-width: 767px) {
     body {
          background-image: url(../images/annabackgr.jpg);
-         color: #FFF;
+         color: #3F4146;
     }
   }
 @media only screen and (max-width: 767px) {
     body {
          background-image: url(../images/annabackgr.jpg);
-         color: #FFF;
+         color: #3F4146;
      }
  }
 

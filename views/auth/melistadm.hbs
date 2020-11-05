@@ -17,7 +17,7 @@ passing it here. So replace this.idPeople for Group name --}}
     <div class="meetup_list_admin">
         <p>{{this.name}}</p>
         <form action="/medetadm/{{this._id}}" method="GET">
-            <button type="submit">EDIT</button>
+            <button type="submit" class="button-editdetails">EDIT</button>
         </form>
     </div>
 {{/each}}
@@ -35,5 +35,5 @@ passing it here. So replace this.idPeople for Group name --}}
 </div> --}}
 
 <form action="/grlistadm" method="GET">
-     <button type="submit">BACK TO GROUPS</button>
+     <button type="submit" class="button-backto">BACK TO GROUPS</button>
 </form>  

@@ -18,7 +18,7 @@ passing it here. So replace this.idPeople for Group name --}}
     <div class="meetup_list_user">
         <p>{{this.name}}</p>
         <form action="/medetus/{{this._id}}" method="GET">
-            <button type="submit">DETAILS</button>
+            <button type="submit" class="button-editdetails">DETAILS</button>
         </form>
         {{!-- The ADD means (if enabled / REMOVE disabled) --> 
             a) In the meetup table to add _id.People to idPeople[].Meetup
@@ -43,5 +43,5 @@ passing it here. So replace this.idPeople for Group name --}}
 
 {{!-- to read an array we need to add .0 or .0. not sure which one --}}
 <form action="/grlistus" method="GET">
-     <button type="submit">BACK TO GROUPS</button>
+     <button type="submit" class="button-backto">BACK TO GROUPS</button>
 </form>  

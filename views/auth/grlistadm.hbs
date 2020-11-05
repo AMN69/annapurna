@@ -15,7 +15,7 @@ idAdmin.Group === _id.People --}}
         <p>{{this.groupName}}</p>
         <p>{{this.groupDescription}}</p>
         <form action="/melistadm/{{this._id}}" method="GET">
-            <button type="submit">MEET UPs</button>
+            <button type="submit" class="button-editdetails">MEET UPs</button>
         </form>
         <form action="/grdetadm/{{this.id}}" method="GET">
             <button type="submit">EDIT</button>
@@ -24,7 +24,7 @@ idAdmin.Group === _id.People --}}
 {{/each}}
 
 <form class="form-create" action="/grcreadm" method="GET">
-            <button class="button-create" type="submit">Create new Group</button>
+            <button class="button-create" type="submit">CREATE NEW GROUP</button>
 </form>     
 
 {{!-- <div>
