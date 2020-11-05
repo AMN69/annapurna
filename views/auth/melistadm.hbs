@@ -14,16 +14,20 @@ passing it here. So replace this.idPeople for Group name --}}
 <h2>EXCURSIONS ADMIN (Group name: {{groupName}})</h2>
 
 {{#each meetupListAdmin}}
-    <div class="meetup_list_admin">
-        <p>{{this.name}}</p>
+<div class="container-list">
+    <div class="list-row">
+        <p class="p-title">{{this.name}}</p>
         <form action="/medetadm/{{this._id}}" method="GET">
             <button type="submit" class="button-editdetails">EDIT</button>
         </form>
     </div>
-{{/each}}
-<form action="/mecreadm/{{idGroup}}" method="GET">
+     <div class="buttons-addremovemeet">  
+    {{/each}}
+        <form action="/mecreadm/{{idGroup}}" method="GET">
             <button type="submit">CREATE</button>
-</form>    
+        </form>    
+    </div>
+</div>
 
 {{!-- <div>
     <form action="/mecreadm" method="GET">

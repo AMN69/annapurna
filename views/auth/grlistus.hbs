@@ -8,7 +8,7 @@
 idGroups[].Group === _id.People and later other Groups --}}
 {{!-- Table = group --}}
 
-<h1>GROUPS</h1>
+
 
 
 <h2>List of groups:</h2>
@@ -19,30 +19,22 @@ idGroups[].Group === _id.People and later other Groups --}}
 {{/if}}
 
 {{#each grListUsrAndUsr.data}}
-    <div class="group_list_user">
-        <p>{{this.groupName}}</p>
-        <p>{{this.groupDescription}}</p>
+<div class="container-list">
+    <div class="list-row">
+        <p class="p-title">{{this.groupName}}</p>
+        <p class="p-descrip">{{this.groupDescription}}</p>
         
-        {{!-- <form action="/melistus/{{this._id}}" method="GET">
-            <button type="submit">MEET UPs</button>
-        </form> --}}
-        {{!-- The ADD means (if enabled / REMOVE disabled) --> 
-            a) In the group table to add _id.People to idPeople[].Group
-            b) In the people table to add _id.Group to idGroup[].People 
-            c) render this page (grlistus) with new situation
-            
-            The REMOVE means (if enabled / ADD disabled) -->
-            a) In the group table to remove _id.People from idPeople[].Group
-            b) In the people table to remove _id.Group from idGroup[].People --}}
+    </div>   
 
-        <form action="/melistus/{{this._id}}" method="GET">
-                <button type="submit" class="button-editdetails">MEET UPs</button>
-        </form>
+    <div class="buttons-addremovemeet">    
 
-        <p>This idPeople = {{this.idPeople}}</p>
-        <p>This user = {{../grListUsrAndUsr.user}}</p>
+    
         {{#each this.idPeople}}
             {{#ifCond this ../../grListUsrAndUsr.user}}
+
+                <form action="/melistus/{{this._id}}" method="GET">
+                <button type="submit" class="button-editdetails">MEET UPs</button>
+                </form>
                 <form action="/grlistus/remove/{{../this._id}}" method="POST">
                     <button type="submit" class="button-addremove">REMOVE -</button>
                 </form>
@@ -60,23 +52,12 @@ idGroups[].Group === _id.People and later other Groups --}}
             </form>
         {{/ifEmpty}}
 
-        {{!-- <form action="/grlistus/remove/{{this._id}}" method="POST">
-            <button type="submit">REMOVE -</button>
-        </form>
-        <form action="/grlistus/add/{{this._id}}" method="POST">
-            <button type="submit">ADD +</button>
-        </form> --}}
+       
     </div>
+</div>
 {{/each}}
 
-<div>
-    <form action="/grlistus/" method="GET">
-            <button type="submit" class="button-backto">Previous</button>
-        </form>
-        <form action="/grlistus/next/" method="GET">
-            <button type="submit" class="button-backto">Next</button>
-        </form>
-</div>
+
 
 
 

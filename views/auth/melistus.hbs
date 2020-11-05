@@ -15,11 +15,15 @@ passing it here. So replace this.idPeople for Group name --}}
 <h2>List of excursions:</h2>
 
 {{#each meetupList}}
-    <div class="meetup_list_user">
-        <p>{{this.name}}</p>
+<div class="container-list">
+    <div class="list-row">
+        <p class="title">{{this.name}}</p>
+    </div>
+    <div class="buttons-addremovemeet">
         <form action="/medetus/{{this._id}}" method="GET">
             <button type="submit" class="button-editdetails">DETAILS</button>
         </form>
+    </div>
         {{!-- The ADD means (if enabled / REMOVE disabled) --> 
             a) In the meetup table to add _id.People to idPeople[].Meetup
             b) In the people table to add _id.Meetup to idMeetup[].People 
@@ -29,7 +33,7 @@ passing it here. So replace this.idPeople for Group name --}}
             a) In the meetup table to remove _id.People from idPeople[].Meetup
             b) In the people table to remove _id.Meetup from idMeetup[].People --}}
                 
-    </div>
+</div>    
 {{/each}}
 
 {{!-- <div>

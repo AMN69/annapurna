@@ -5,6 +5,14 @@
   box-sizing: border-box;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
 
 body {
   height: 100vh;
@@ -16,22 +24,26 @@ body {
   background-attachment: fixed;
   background-size: cover;
   background-color: #3f4146;
+  margin: 0;
+  padding: 0;
   text-align: center;
   color: #3F4146;
   font-family: Tahoma, sans-serif, Times, serif;
 }
 
+
 a {
   color: #00b7ff;
 }
 
+
 h1 {
-font-family: cinzel;  
+font-family: optima;  
 font-size: 8%;
 }
 
 h2 {
-font-family: cinzel;
+font-family: optima;
 }
 
 h3 {
@@ -99,10 +111,13 @@ h3 {
   width: 100%;
 }
 
+
 nav {
   /* background: #262626; */
   padding: 25px 0;
-  font-family: cinzel;
+  font-family: serif;
+  
+
 }
 
 nav .wrapper{
@@ -111,20 +126,60 @@ nav .wrapper{
 
 nav .wrapper a{
   text-transform: uppercase;
-  /* color: #fff; */
   color: #262626;
   text-decoration: none;
   padding: 0 10px;
-  opacity: 0.8;
+  opacity: 90;
 }
 
 nav .wrapper a:hover{
+  color: white;
   opacity: 1;
 }
 
-.container{
-  /* margin: 50px; */
-  width: 90%;
+.container-list{
+  align-items: center;
+  justify-content: center;
+  border: 0.5px solid #CBCCCB;
+  display: flex;
+  
+}
+
+.buttons-addremovemeet {
+  display: block;
+  flex-direction: row;
+  width: 15%;
+
+  
+
+}
+.list-row {
+  background: #CBCCCB;
+  border-radius: 5px;
+  text-align: left;
+  text-justify: center;
+  border: 1px #6E6A6A;
+  opacity: 85%;
+  margin: 2%;
+  padding: 1%;
+  width: 80%;
+
+  
+}
+p {
+  margin: 1rem;
+}
+
+.p-title {
+  font-size: 1.4 rem;
+  color: #3f4146;
+  font-weight: 500;
+  opacity: 100%;
+}
+
+.p-descrip {
+ font-size: 90%;
+ color: #6E6A6A;
 }
 
 .nav-div {
@@ -192,10 +247,10 @@ color: #897C68;
 }
 
 .button-editdetails { 
-  background-color: #CBCCCB; 
+  background-color: #6E6A6A; 
   border: none;
   border-radius: 0.9rem;
-  color: #6E6A6A;
+  color: white;
   padding: 0.7rem 0.7rem;
   text-align: center;
   text-decoration: none;
@@ -208,7 +263,7 @@ color: #897C68;
 
 
 .button-editdetails:hover{
-background-color: #6E6A6A;
+background-color: #897C68;
 color: white;
 }
 
@@ -238,6 +293,8 @@ color: white;
 .dropdown {
   display: none;
 }
+
+
 
 @media (max-width: 414px) { /* For mobile 414px */
 
@@ -295,6 +352,8 @@ color: white;
     font-size: 1.2rem;
     display: flex;
   }
+
+  
 /*para background responsive */
 @media only screen and (max-device-width: 767px) {
     body {
