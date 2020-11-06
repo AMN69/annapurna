@@ -1,5 +1,5 @@
 /**
- * Moves the map to display over Berlin
+ * Moves the map to display over Barcelona (on Here maps originally Berlin)
  *
 //  * @param  {H.Map} map      A HERE Map instance within the application
  */
