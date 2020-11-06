@@ -34,17 +34,12 @@
 </form>
 
 {{!-- Andreu-changes-for-map-start --}}
-
-<div class="map-img">
-</div>
-<h3>Code</h3>
-<p>
-    The <code>map.setCenter()</code> method and <code>map.setZoom() </code>method are able to control the location of the map.<br>
-</p>
-
+<div id="map" class="map-img"></div>
 {{!-- Andreu-changes-for-map-end --}}
 
 <form action="/melistadm/{{idGroup}}" method="GET">
     <button type="submit" class="button-backto">BACK TO EXCURSIONS</button>
 </form>   
-<script type="text/javascript" src='../../public/javascripts/map.js'></script>
+{{!-- Andreu-changes-for-map-start --}}
+<script type="text/javascript" src='/javascripts/map.js'></script>
+{{!-- Andreu-changes-for-map-end --}}
