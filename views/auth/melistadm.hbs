@@ -8,12 +8,20 @@
 _id.Group === idGroup.Meetup (unique, not array). --}}
 {{!-- Table = meetup --}}
 
-<h2>EXCURSIONS ADMIN 
+<h2>EXCURSIONS 
     </br>
-    (Group name: {{groupName}})</h2>
+    (admin)  
+    </br>
+    </br>
+    GROUP NAME: {{groupName}}</h2>
+    </br>
+    <form class="form-create" action="/mecreadm/{{idGroup}}" method="GET"">
+            <button class="button-create" type="submit"> CREATE NEW EXCURSION </button>
+        </form>    
+
 
 {{#each meetupListAdmin}}
-<div class="container-list"></div>
+<div class="container-list">
 
     <div class="list-row">
         <p class="p-title">{{this.name}}</p>
@@ -30,9 +38,7 @@ _id.Group === idGroup.Meetup (unique, not array). --}}
      
     {{/each}}
     
-        <form action="/mecreadm/{{idGroup}}" method="GET" class="button-create">
-            <button type="submit">CREATE</button>
-        </form>    
+        
     
 
 <form action="/grlistadm" method="GET">

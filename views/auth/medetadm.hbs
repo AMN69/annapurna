@@ -8,15 +8,20 @@
 {{!-- Table = meetup --}}
 
 <h1>EXCURSION DETAILS</h1>
-<div>
-    <h2>Update Excursion</h2>
-<form action="/medetadm/{{meetupDet._id}}" method="POST" class="login">
+</br>
+<h2>Update Excursion</h2>
+</br>
+</br>
+<div class="detailwrapper"">
+  <div class="metdetails0">
     
-
-    <label for="name">Meet Up Name</label>
+  <form action="/medetadm/{{meetupDet._id}}" method="POST" class="metdetails">
+  
+    <label for="name">Excursion Name</label>
+    </br>
     <input type="text" name="name" class="login-input" value="{{meetupDet.name}}">
-
-    <label for="description">Meet Up Description</label>
+    </br>
+    <label for="description"> Description</label>
       </br>
     <input type="text" name="description" class="login-input" value="{{meetupDet.description}}">
     </br>
@@ -35,31 +40,36 @@
     <label for="city">City</label>
       </br>
     <input type="text" name="city" class="login-input" value="{{meetupDet.city}}">
-  </br>
+    </br>
     <label for="zipcode">Zipcode</label>
       </br>
     <input type="text" name="zipcode" class="login-input" value="{{meetupDet.zipcode}}">
-  </br>
+    </br>
     <label for="adress">Adress</label>
       </br>
     <input type="text" name="address" class="login-input" value="{{meetupDet.address}}">
-  </br>
+    </br>
     <label for="adressnum">Adress Number</label>
+    </br>
     <input type="text" name="addressnum" class="login-input" value="{{meetupDet.addressnum}}">
-
-    <button type="submit">MODIFY</button>
-</form>
-
-<img src="{{api}}" alt="point of meetup image">
+    </br>
+    </br>
+    <button type="submit" class="submit">MODIFY</button>
+  </form>
+  </div>
+  <div class="mapa-img">
+    <img src="{{api}}" alt="point of meetup image">
+  </div>
+</div>
 
 {{#if meetupUpdated}}
-    <p>{{meetupUpdated}}</p>
+    <p class="updated">{{meetupUpdated}}</p>
 {{else}}
     <p>Please, modify and update data.</p>
 {{/if}}
 
 <form action="/melistadm/{{meetupDet.idGroup}}" method="GET">
-    <button type="submit" class="button-backto">BACK TO MEET UPs</button>
+    <button type="submit" class="button-backto">BACK TO EXCURSIONS</button>
 </form>
 <form action="/grlistadm" method="GET">
     <button type="submit" class="button-backto">BACK TO GROUPs</button>

@@ -10,8 +10,11 @@
 <h1>EXCURSION DETAILS</h1>
 
 <h2>DETAILS</h2>
-<div class="container-results">
-    <div class="div-results">
+
+</br>
+</br>
+<div class="detailwrapper"">
+  <div class="metdetails0">
         <p>Name: {{meetupDet.name}}</p>
         <p>Description: {{meetupDet.description}}</p>
         <p>Date: {{meetupDet.date}}</p>
@@ -31,9 +34,9 @@
 
 
 {{#if meetupUpdated}}
-    <p>{{meetupUpdated}}</p>
+    <p class="updated">{{meetupUpdated}}</p>
 {{else}}
-    <p>You can join or leave an excursion.</p>
+    <p class="updated">You can join or leave an excursion.</p>
 {{/if}}
 
 
@@ -48,7 +51,7 @@
 {{/if}}
 
 <form action="/melistus/{{meetupDet.idGroup}}" method="GET">
-    <button type="submit" class="button-backto">BACK TO MEET UPs</button>
+    <button type="submit" class="button-backto">BACK TO EXCURSIONS</button>
 </form>
 <form action="/grlistus" method="GET">
     <button type="submit" class="button-backto">BACK TO GROUPs</button>

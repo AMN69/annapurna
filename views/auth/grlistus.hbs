@@ -13,9 +13,9 @@ idGroups[].Group === _id.People and later other Groups --}}
 
 <h2>List of groups:</h2>
 {{#if groupUpdated}}
-    <p>{{groupUpdated}}</p>
+    <p class="updated">{{groupUpdated}}</p>
 {{else}}
-    <p>You can see group excursions, join or leave groups</p>
+    <p class="updated">You can see group excursions, join or leave groups</p>
 {{/if}}
 
 {{#each grListUsrAndUsr.data}}
@@ -33,7 +33,7 @@ idGroups[].Group === _id.People and later other Groups --}}
             {{#ifCond this ../../grListUsrAndUsr.user}}
 
                 <form action="/melistus/{{../this._id}}" method="GET">
-                <button type="submit" class="button-editdetails">MEET UPs</button>
+                <button type="submit" class="button-editdetails">EXCURSIONS</button>
                 </form>
                 <form action="/grlistus/remove/{{../this._id}}" method="POST">
                     <button type="submit" class="button-addremove">REMOVE -</button>
