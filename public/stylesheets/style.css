@@ -379,6 +379,15 @@ color: white;
   
 }
 
+#map {
+  width: 75%;
+  height: 450px;
+  background: grey;
+  margin-left: 5%;
+  margin-top: 2.5%;
+  margin-bottom: 2.5%;
+  padding-right: 5%;
+}
 
 .mapa-img{
   vertical-align: middle;

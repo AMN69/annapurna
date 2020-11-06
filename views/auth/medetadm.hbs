@@ -12,7 +12,7 @@
 <h2>Update Excursion</h2>
 </br>
 </br>
-<div class="detailwrapper"">
+<div class="detailwrapper">
   <div class="metdetails0">
     
   <form action="/medetadm/{{meetupDet._id}}" method="POST" class="metdetails">
@@ -65,7 +65,7 @@
 {{#if meetupUpdated}}
     <p class="updated">{{meetupUpdated}}</p>
 {{else}}
-    <p>Please, modify and update data.</p>
+    <p class="updated">Please, modify and update data.</p>
 {{/if}}
 
 <form action="/melistadm/{{meetupDet.idGroup}}" method="GET">

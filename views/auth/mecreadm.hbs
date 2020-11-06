@@ -34,12 +34,13 @@
 </form>
 
 {{!-- Andreu-changes-for-map-start --}}
-<div id="map" class="map-img"></div>
+
+<div id="map" class="map-img">
+    <script type="text/javascript" src='/javascripts/map.js'></script>
+</div>
+
 {{!-- Andreu-changes-for-map-end --}}
 
 <form action="/melistadm/{{idGroup}}" method="GET">
     <button type="submit" class="button-backto">BACK TO EXCURSIONS</button>
 </form>   
-{{!-- Andreu-changes-for-map-start --}}
-<script type="text/javascript" src='/javascripts/map.js'></script>
-{{!-- Andreu-changes-for-map-end --}}
